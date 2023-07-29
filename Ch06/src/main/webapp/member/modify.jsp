@@ -70,13 +70,13 @@
 				<tr>
 					<td>직급</td>
 					<td>
-						<select name="pos" value="<%= vo.getPos() %>">
-							<option>사원</option>
-							<option>부장</option>
-							<option>차장</option>
-							<option>대리</option>
-							<option>과장</option>
-							<option>사장</option>
+						<select name="pos">
+							<option value="<%= vo.getPos() %>" >사원</option>
+							<option value="<%= vo.getPos() %>">부장</option>
+							<option value="<%= vo.getPos() %>">차장</option>
+							<option value="<%= vo.getPos() %>">대리</option>
+							<option value="<%= vo.getPos() %>">과장</option>
+							<option value="<%= vo.getPos() %>">사장</option>
 						</select>
 					</td>
 				</tr>

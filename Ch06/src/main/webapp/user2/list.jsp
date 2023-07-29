@@ -12,7 +12,7 @@
 	String user = "root";
 	String pass = "1234";
 	
-	List<User2VO> users = new ArrayList();
+	List<User2VO> users = new ArrayList<>();
 	
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");

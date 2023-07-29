@@ -31,12 +31,12 @@
 					<td>직급</td>
 					<td>
 						<select name="pos">
-							<option>사원</option>
-							<option>부장</option>
-							<option>차장</option>
-							<option>대리</option>
-							<option>과장</option>
-							<option>사장</option>
+							<option value="사원">사원</option>
+							<option value="부장">부장</option>
+							<option value="차장">차장</option>
+							<option value="대리">대리</option>
+							<option value="과장">과장</option>
+							<option value="사장">사장</option>
 						</select>
 					</td>
 				</tr>
