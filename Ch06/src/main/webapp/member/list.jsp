@@ -69,8 +69,26 @@
 					<td><%= vo.getName() %></td>
 					<td><%= vo.getHp() %></td>
 					<td><%= vo.getPos() %></td>
-					<td><%= vo.getDep() %></td>
-					<td><%= vo.getRdate() %></td>
+					<td>
+					<%
+					if(vo.getDep().equals("101")){ 
+						out.print("영업1부");
+					}else if(vo.getDep().equals("102")){
+						out.print("영업2부");
+					}else if(vo.getDep().equals("103")){
+						out.print("영업3부");
+					}else if(vo.getDep().equals("104")){
+						out.print("영업4부");
+					}else if(vo.getDep().equals("105")){
+						out.print("영업5부");
+					}else if(vo.getDep().equals("106")){
+						out.print("영업지원부");
+					}else if(vo.getDep().equals("107")){
+						out.print("인사부");
+					}
+					%>
+					</td>
+					<td><%= vo.getRdate().substring(0, 10) %></td>
 					<td>
 						<a href="/Ch06/member/modify.jsp?uid=<%=vo.getUid()%>">수정</a>
 						<a href="/Ch06/member/delete.jsp?uid=<%=vo.getUid()%>">삭제</a>
