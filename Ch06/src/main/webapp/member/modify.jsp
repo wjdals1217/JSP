@@ -71,7 +71,7 @@
 					<td>직급</td>
 					<td>
 						<select name="pos">
-							<option value="<%= vo.getPos() %>" >사원</option>
+							<option value="<%= vo.getPos() %>">사원</option>
 							<option value="<%= vo.getPos() %>">부장</option>
 							<option value="<%= vo.getPos() %>">차장</option>
 							<option value="<%= vo.getPos() %>">대리</option>

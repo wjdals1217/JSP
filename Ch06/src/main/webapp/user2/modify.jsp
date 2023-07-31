@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="vo.User2VO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -9,16 +12,14 @@
 
 	String uid = request.getParameter("uid");
 	
-	// 데이터베이스처리
-	String host = "jdbc:mysql://localhost:3306/userdb";
-	String user = "root";
-	String pass = "1234";
-	
 	User2VO vo = null;
 	
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		Context initCtx = new InitialContext();
+		Context ctx = (Context)initCtx.lookup("java:comp/env");
+		
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
 		PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `user2` WHERE `uid`= ?");
 		psmt.setString(1, uid);
 		ResultSet rs = psmt.executeQuery();
@@ -28,7 +29,7 @@
 			vo.setUid(rs.getString(1));
 			vo.setName(rs.getString(2));
 			vo.setHp(rs.getString(3));
-			vo.setAge(rs.getString(4));
+			vo.setAge(rs.getInt(4));
 		}
 		
 		rs.close();

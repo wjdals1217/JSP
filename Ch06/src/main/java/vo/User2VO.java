@@ -4,7 +4,7 @@ public class User2VO {
 	private String uid;
 	private String name;
 	private String hp;
-	private String age;
+	private int age;
 	
 	public String getUid() {
 		return uid;
@@ -24,10 +24,10 @@ public class User2VO {
 	public void setHp(String hp) {
 		this.hp = hp;
 	}
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	
