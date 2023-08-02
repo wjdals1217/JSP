@@ -1,3 +1,4 @@
+<%@page import="vo.User2VO"%>
 <%@ page contentType="text/xml;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@page import="org.jdom2.output.Format"%>
 <%@page import="org.jdom2.output.XMLOutputter"%>
@@ -5,7 +6,6 @@
 <%@page import="org.jdom2.Document"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="vo.User2VO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>

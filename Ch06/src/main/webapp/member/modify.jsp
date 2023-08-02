@@ -1,6 +1,6 @@
+<%@page import="vo.MemberVO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="vo.MemberVO"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -71,12 +71,13 @@
 					<td>직급</td>
 					<td>
 						<select name="pos">
-							<option value="<%= vo.getPos() %>">사원</option>
-							<option value="<%= vo.getPos() %>">부장</option>
-							<option value="<%= vo.getPos() %>">차장</option>
-							<option value="<%= vo.getPos() %>">대리</option>
-							<option value="<%= vo.getPos() %>">과장</option>
-							<option value="<%= vo.getPos() %>">사장</option>
+							<option><%= vo.getPos() %></option>
+							<%if(!vo.getPos().equals("사원")){%><option value="사원">사원</option><%}%>
+							<%if(!vo.getPos().equals("부장")){%><option value="부장">부장</option><%}%>
+							<%if(!vo.getPos().equals("차장")){%><option value="차장">차장</option><%}%>
+							<%if(!vo.getPos().equals("대리")){%><option value="대리">대리</option><%}%>
+							<%if(!vo.getPos().equals("과장")){%><option value="과장">과장</option><%}%>
+							<%if(!vo.getPos().equals("사장")){%><option value="사장">사장</option><%}%>
 						</select>
 					</td>
 				</tr>

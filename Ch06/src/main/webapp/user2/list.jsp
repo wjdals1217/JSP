@@ -1,3 +1,4 @@
+<%@page import="vo.User2VO"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.Context"%>
 <%@page import="javax.naming.InitialContext"%>
@@ -7,7 +8,6 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="vo.User2VO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	List<User2VO> users = new ArrayList<>();

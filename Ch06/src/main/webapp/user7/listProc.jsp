@@ -1,3 +1,4 @@
+<%@page import="vo.User2VO"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -6,7 +7,6 @@
 <%@page import="javax.naming.Context"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="vo.User2VO"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
