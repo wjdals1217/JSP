@@ -7,10 +7,11 @@
     			
     			const uid = $('input[name=uid]').val();
     			
-    			if(uid == ''){
-    				alert('아이디를 입력하세요.');
-    				return;
-    			}
+    			if(!uid.match(reUid)){
+					$('.resultId').css('color', 'red').text('유효한 아이디가 아닙니다.');
+					isUidOk = false;
+					return; // 종료	
+				};
     			
     			
     			const jsonData = {
@@ -25,8 +26,10 @@
     				success:function(data){
     					if(data.result >=1){
     						$('.resultId').css('color', 'red').text('이미 사용중인 아이디 입니다.');	
+    						isUidOk = false;
     					}else{
     						$('.resultId').css('color', 'green').text('사용할 수 있는 아이디 입니다.');
+    						isUidOk = true;
     					}
     				}
     			});
@@ -37,6 +40,12 @@
     			
     			// 입력 데이터 가져오기
     			const nick = $(this).val();
+    			
+    			if(!nick.match(reNick)){
+					$('.resultNick').css('color', 'red').text('유효한 닉네임이 아닙니다.');
+					isNickOk = false;
+					return;
+				}
     			
     			//console.log('nick : '+nick);
     			
@@ -51,8 +60,10 @@
     			$.get('/Jboard1/user/checkNick.jsp', jsonData, function(data){
     				if(data.result >=1){
     					$('.resultNick').css('color', 'red').text('이미 사용 중인 별명입니다.');
+    					isNickOk = false;
     				}else{
     					$('.resultNick').css('color', 'green').text('사용할 수 있는 별명입니다.');
+    					isNickOk = true;
     				}
     			});
     			
@@ -66,6 +77,13 @@
     			const email = this.value;
     			console.log('email : '+email);
     			
+    			// 유효성 검사
+    			if(!email.match(reEmail)){
+					$('.resultEmail').css('color', 'red').text('유효한 이메일이 아닙니다.');
+					isEmailOk = false;
+					return;
+				}
+				
     			const xhr = new XMLHttpRequest();
     			xhr.open('GET', '/Jboard1/user/checkEmail.jsp?email='+email);
     			xhr.send();
@@ -81,11 +99,12 @@
     							//alert('이미 사용중인 이메일 입니다.');
     							resultEmail.innerText = '이미 사용중인 이메일 입니다.';
     							resultEmail.style.color = 'red';
+    							isEmailOk = false;
     						}else{
     							//alert('사용 가능한 이메일 입니다.');
     							resultEmail.innerText = '사용가능한 이메일 입니다.';
     							resultEmail.style.color = 'green';
-    							
+    							isEmailOk = true;
     						}
     					}
     				}
@@ -94,23 +113,34 @@
     		
     		// 휴대폰 중복체크
     		document.getElementsByName('hp')[0].addEventListener('focusout', function(){
+
+    			const resultHp = document.getElementsByClassName('resultHp')[0];				
+    			const hp = this.value;
+    			
+    			if(!hp.match(reHp)){
+    				resultHp.innerText = '유효한 휴대폰번호가 아닙니다.';
+        			resultHp.style.color = 'red';
+        			isHpOk = false;
+        			return;
+				}
+    		
     			
     			const url = '/Jboard1/user/checkHp.jsp?hp='+this.value;
     			fetch(url)
     						.then(response => response.json())
     						.then(data => {
     							console.log(data);
-    							const resultHp = document.getElementsByClassName('resultHp')[0];
-    							
+
     							if(data.result >=1){
         							//alert('이미 사용중인 이메일 입니다.');
         							resultHp.innerText = '이미 사용중인 휴대폰 번호 입니다.';
         							resultHp.style.color = 'red';
+        							isHpOk = false;
         						}else{
         							//alert('사용 가능한 이메일 입니다.');
         							resultHp.innerText = '사용가능한 휴대폰번호 입니다.';
         							resultHp.style.color = 'green';
-        							
+        							isHpOk = true;
         						}
     						});
     			
