@@ -113,3 +113,4 @@
 8월 03, 2023 09:35:46.993 NEW SESSION
 8월 03, 2023 09:35:46.993 [11024:10744:0803/093546.992:ERROR:feature_processor_state.cc(39)] Processing error occured: model WebAppInstallationPromo failed with UkmEngineDisabled, message: 
 8월 03, 2023 09:35:47.02 [11024:10744:0803/093547.002:ERROR:feature_processor_state.cc(39)] Processing error occured: model WebAppInstallationPromo failed with UkmEngineDisabled, message: 
+8월 03, 2023 10:53:25.338 [11024:10744:0803/105325.338:ERROR:device_event_log_impl.cc(222)] [10:53:25.338] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
