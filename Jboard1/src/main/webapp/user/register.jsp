@@ -38,7 +38,36 @@
     					}
     				}
     			});
+    		});// 아이디 중복체크
+    		
+    		// 닉네임 중복 체크
+    		$('input[name=nick]').focusout(function(){
+    			
+    			// 입력 데이터 가져오기
+    			const nick = $(this).val();
+    			
+    			//console.log('nick : '+nick);
+    			
+    			if(nick==''){
+    				alert('별명을 입력하세요');
+    				return;
+    			}
+    			const jsonData = {
+    					"nick":nick
+    			};
+    			
+    			$.get('/Jboard1/user/checkNick.jsp', jsonData, function(data){
+    				if(data.result >=1){
+    					$('.resultNick').css('color', 'red').text('이미 사용 중인 별명입니다.');
+    				}else{
+    					$('.resultNick').css('color', 'green').text('사용할 수 있는 별명입니다.');
+    				}
+    			});
+    			
     		});
+    		
+    		
+    		
     	});
     </script>
     <link rel="stylesheet" href="../css/style.css">
