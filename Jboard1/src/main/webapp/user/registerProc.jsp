@@ -26,7 +26,7 @@
 		DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 		
 		Connection conn = ds.getConnection();
-		String sql = "INSERT INTO `user` SET `uid`=?, `pass`=?, `name`=?, ";
+		String sql = "INSERT INTO `user` SET `uid`=?, `pass`=SHA2(?, 256), `name`=?, ";
 			   sql +="`nick`=?, `email`=?, `hp`=?, `zip`=?, `addr1`=?, `addr2`=?, `regip`=?, `regDate`=NOW()";
 		PreparedStatement psmt = conn.prepareStatement(sql);
 		

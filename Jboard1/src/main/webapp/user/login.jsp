@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String success = request.getParameter("success");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +12,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script>
+    	const success = <%= success %>
+
+    	if(success == 100){
+    		// 로그인 실패
+    		alert('로그인에 실패했습니다. 다시 확인하시기 바랍니다.');
+    		
+    	}else if(success = 101){
+    		// 인증없이 글목록 요청
+    		alert('로그인을 먼저 하셔야 합니다.');
+    	}
+    	
+    </script>
 </head>
 <body>
     <div id="container">
@@ -14,7 +33,7 @@
         </header>
         <main>
             <section class="login">
-                <form action="#">
+                <form action="/Jboard1/user/loginProc.jsp" method="post">
                     <table border="0">
                         <tr>
                             <td><img src="../images/login_ico_id.png" alt="아이디"></td>
