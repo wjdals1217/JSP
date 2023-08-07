@@ -28,7 +28,7 @@
     		// 로그인 실패
     		alert('로그인에 실패했습니다. 다시 확인하시기 바랍니다.');
     		
-    	}else if(success = 101){
+    	}else if(success == 101){
     		// 인증없이 글목록 요청
     		alert('로그인을 먼저 하셔야 합니다.');
     	}
@@ -42,7 +42,7 @@
         </header>
         <main>
             <section class="login">
-                <form action="/Jboard1/user/loginProc.jsp" method="post">
+                <form action="/Jboard1/proc/loginProc.jsp" method="post">
                     <table border="0">
                         <tr>
                             <td><img src="/Jboard1/images/login_ico_id.png" alt="아이디"></td>

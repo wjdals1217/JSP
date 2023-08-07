@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- 글쓰기 버튼 -->
-                <a href="#" class="btnWrite">글쓰기</a>
+                <a href="/Jboard1/write.jsp" class="btnWrite">글쓰기</a>
             </section>
         </main>
         <footer>
