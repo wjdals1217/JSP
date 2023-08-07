@@ -33,4 +33,6 @@ public class SQL {
 																			+ "`regip`=?, "
 																			+	"`rdate`=NOW()";
 	
+	public static final String SELECT_ARTICLES = "SELECT `no`, `title`, `comment`, `writer`, `nick`, `rdate`, `hit` FROM `Article` AS A JOIN `User` AS B ON A.writer = B.uid ORDER BY A.rdate DESC;";
+	
 }

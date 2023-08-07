@@ -12,6 +12,7 @@ public class ArticleVO {
 	private String writer;
 	private String regip;
 	private String rdate;
+	private String nick;
 	
 	
 	public int getNo() {
@@ -75,10 +76,19 @@ public class ArticleVO {
 		this.regip = regip;
 	}
 	public String getRdate() {
+		return rdate.substring(2, 10);
+	}
+	public String getFullRdate() {
 		return rdate;
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 	
 	
