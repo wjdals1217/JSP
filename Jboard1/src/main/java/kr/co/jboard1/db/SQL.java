@@ -33,6 +33,9 @@ public class SQL {
 																			+ "`regip`=?, "
 																			+	"`rdate`=NOW()";
 	
-	public static final String SELECT_ARTICLES = "SELECT `no`, `title`, `comment`, `writer`, `nick`, `rdate`, `hit` FROM `Article` AS A JOIN `User` AS B ON A.writer = B.uid ORDER BY A.rdate DESC;";
+	public static final String SELECT_ARTICLES = "SELECT A.*, B.`nick` FROM `Article` AS A "
+																		+ "JOIN `User` AS B ON A.writer = B.uid "
+																		+ "ORDER BY A.`no` DESC LIMIT ?, 10;";
 	
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article`;";
 }

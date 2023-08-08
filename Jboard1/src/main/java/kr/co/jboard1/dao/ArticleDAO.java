@@ -33,24 +33,54 @@ public class ArticleDAO extends DBHelper {
 	public ArticleVO selectArticle(int no) {
 		return null;
 	}
-	public List<ArticleVO> selectArticles() {
+	
+	public int selectCountTotal() {
+		int total = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return total;
+	}
+	
+	public List<ArticleVO> selectArticles(int start) {
 		
 		List<ArticleVO> articles = new ArrayList<>();
 		
 		try{
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
+			psmt.setInt(1, start); // 1페이지 당(페이지 시작마다 index 번호 호출) 10 게시물
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				ArticleVO vo = new ArticleVO();
 				vo.setNo(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
+				vo.setParent(rs.getInt(2));
 				vo.setComment(rs.getInt(3));
-				vo.setWriter(rs.getString(4));
-				vo.setNick(rs.getString(5));
-				vo.setRdate(rs.getString(6));
-				vo.setHit(rs.getInt(7));
+				vo.setCate(rs.getString(4));
+				vo.setTitle(rs.getString(5));
+				vo.setContent(rs.getString(6));
+				vo.setFile(rs.getInt(7));
+				vo.setHit(rs.getInt(8));
+				vo.setWriter(rs.getString(9));
+				vo.setRegip(rs.getString(10));
+				vo.setRdate(rs.getString(11));
+				vo.setNick(rs.getString(12));
+				
 				
 				articles.add(vo);
 
