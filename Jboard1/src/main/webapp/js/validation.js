@@ -27,34 +27,33 @@
     		$('input[name=pass2]').focusout(function(){
     			const pass1 = $('input[name = pass1]').val();
     			const pass2 = $('input[name = pass2]').val();
-    			
-    			if(pass1 == pass2){
+					
+					if(pass1 == pass2){
     				if(pass1.match(rePass)){
     					$('.resultPass').css('color', 'green').text('사용할 수 있는 비밀번호입니다.');
     					isPassOk= true;
     				}else {
     					$('.resultPass').css('color', 'red').text('비밀번호는 숫자, 영문, 특수문자 조합 5자리 이상이어야 합니다.');
-    				}
+    					}
     			}else{
     				$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다.');
     				isPassOk = false;
-    				
-    			}
+				}
     		});
     		
     		// 이름 검사
     		$('input[name=name]').focusout(function(){
     			const name = $(this).val();
     			
-    			if(name.match(reName)){
+					if(name.match(reName)){
     				$('.resultName').text('');
     				isNameOk = true;
     			
-    			}else{
+    			}else {
     				$('.resultName').css('color', 'red').text('유효한 이름이 아닙니다.');
     				isNameOk = false;
+				}
     			
-    			}
     		});
     		
     		// 최종전송
