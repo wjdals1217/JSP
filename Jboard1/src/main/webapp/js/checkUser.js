@@ -1,18 +1,15 @@
 // 사용자 개인정보 중복체크
     	$(function(){
+			const empty = '';
     		// 아이디 중복체크
     		$('#btnCheckUid').click(function(){
-    			
-    			
-    			
+    		    			
     			const uid = $('input[name=uid]').val();
-    			
-    			if(!uid.match(reUid)){
+    			if(uid != empty){if(!uid.match(reUid)){
 					$('.resultId').css('color', 'red').text('유효한 아이디가 아닙니다.');
 					isUidOk = false;
 					return; // 종료	
-				};
-    			
+				};    			
     			
     			const jsonData = {
     					"uid":uid
@@ -33,8 +30,12 @@
     					}
     				}
     			});
+    			}else{
+					$('.resultId').css('color', 'green').text('아이디를 입력해주세요.');
+				}
+    			
     		});// 아이디 중복체크
-    		
+	    		
     		// 닉네임 중복 체크
     		$('input[name=nick]').focusout(function(){
     			

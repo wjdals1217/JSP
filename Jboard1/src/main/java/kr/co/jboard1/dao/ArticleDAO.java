@@ -188,7 +188,21 @@ public class ArticleDAO extends DBHelper {
 		}catch(Exception e) {e.printStackTrace();}
 	}
 	
-	public void deleteArticle(int no) {}
+	public void deleteArticle(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			
+			psmt.executeUpdate();
+			
+			close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void insertComment(ArticleDTO dto) {
 		try {
