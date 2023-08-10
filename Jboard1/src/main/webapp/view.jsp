@@ -38,7 +38,8 @@
 			</tr>
 		</table>
 		<div>
-			<a href="#" class="btnDelete">삭제</a> <a href="#" class="btnModify">수정</a>
+			<a href="#" class="btnDelete">삭제</a> 
+			<a href="/Jboard1/modify.jsp?no=<%= no %>" class="btnModify">수정</a>
 			<a href="/Jboard1/list.jsp" class="btnList">목록</a>
 		</div>
 
@@ -52,7 +53,8 @@
 				<textarea name="comment" readonly><%= comment.getContent() %></textarea>
 				<%if(sessUser.getUid().equals(comment.getWriter())){ %>
 				<div>
-					<a href="/Jboard1/proc/commentDelete.jsp?no=<%= comment.getNo() %>&parent=<%= comment.getParent() %>" class="del">삭제</a> <a href="#"  class="mod">수정</a>
+					<a href="/Jboard1/proc/commentDelete.jsp?no=<%= comment.getNo() %>&parent=<%= comment.getParent() %>" class="del">삭제</a> 
+					<a href="#"  class="mod">수정</a>
 				</div>
 				<% } %>
 			</article>
