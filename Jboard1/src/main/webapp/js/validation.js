@@ -24,10 +24,13 @@
     			
     		});
     		// 비밀번호 검사
-    		$('input[name=pass2]').focusout(function(){
+    		$('input[name=pass2]').keyup(function(){
     			const pass1 = $('input[name = pass1]').val();
     			const pass2 = $('input[name = pass2]').val();
-					
+    			
+    			if(pass1.isemty() || pass2.isemty()){
+					$('.resultPass').text('');
+    			}else{
 					if(pass1 == pass2){
     				if(pass1.match(rePass)){
     					$('.resultPass').css('color', 'green').text('사용할 수 있는 비밀번호입니다.');
@@ -39,12 +42,14 @@
     				$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다.');
     				isPassOk = false;
 				}
+				}
+				
     		});
     		
     		// 이름 검사
     		$('input[name=name]').focusout(function(){
     			const name = $(this).val();
-    			
+    			   			
 					if(name.match(reName)){
     				$('.resultName').text('');
     				isNameOk = true;
@@ -53,6 +58,7 @@
     				$('.resultName').css('color', 'red').text('유효한 이름이 아닙니다.');
     				isNameOk = false;
 				}
+				
     			
     		});
     		
