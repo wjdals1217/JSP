@@ -22,8 +22,8 @@
 		// 댓글 수정
 		$('.mod').click(function(e){
 			e.preventDefault();
-			
 			const txt = $(this).text();
+			
 			if(txt == '수정'){
 				$(this).parent().prev().addClass('modi');
 				$(this).parent().prev().attr('readonly', false);
@@ -34,14 +34,14 @@
 				// 수정 완료 클릭
 				
 				// 수정 데이터 전송
-				$(this).closest('form').submit();
+				/* $(this).closest('form').submit(); */
+				$(this).parent().parent().submit(); 
 				
 				// 수정모드 해제
 				$(this).parent().prev().removeClass('modi');
 				$(this).parent().prev().attr('readonly', true);
 				$(this).text('수정');
 				$(this).prev().hide();
-				
 			}
 		});
 		// 댓글 삭제
@@ -114,23 +114,26 @@
 			<h3>댓글목록</h3>
 			<%for(ArticleDTO comment : comments){ %>
 			<article class="comment">
-				<form action="/Jboard1/proc/commentUpdate.jsp">
-					<span> <span><%=comment.getNick() %></span> <span><%=comment.getRdate() %></span>
+				<form action="/Jboard1/proc/commentUpdate.jsp" method="post">
+					<span> 
+						<span><%=comment.getNick() %></span>
+						<span><%=comment.getRdate() %></span>
 					</span>
 					<textarea name="comment" readonly><%= comment.getContent() %></textarea>
 					<%if(sessUser.getUid().equals(comment.getWriter())){ %>
 					<div>
 							<a href="/Jboard1/proc/commentDelete.jsp?no=<%= comment.getNo() %>&parent=<%= comment.getParent() %>"class="del">삭제</a> 
-								<a href="#"  class="can">취소</a>
-								<a href="#"  class="mod">수정</a>
+							<a href="#"  class="can">취소</a>
+							<a href="#"  class="mod">수정</a>
 					</div>
 					<% } %>
+				</form>
 				</article>
 				<% } %>
 				<% if(comments.isEmpty()){ %>
 				<p class="empty">등록된 댓글이 없습니다.</p>
 				<% } %>
-			</form>
+	
 		</section>
 
 		<!-- 댓글입력폼 -->
