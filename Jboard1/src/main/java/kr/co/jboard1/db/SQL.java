@@ -58,6 +58,8 @@ public class SQL {
 
 	public static final String UPDATE_ARTICLE_FOR_COMMENT_MINUS = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no`=?";
 	
+	public static final String UPDATE_COMMENT = "UPDATE `Article` SET `content`=? WHERE `no`=?";
+	
 	public static final String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? WHERE `no`=?";
 	
 	public static final String DELETE_ARTICLE = "DELETE FROM `Article`WHERE `no`=? OR `parent`=?";
