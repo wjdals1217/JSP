@@ -97,8 +97,9 @@ public class UserDAO extends DBHelper {
 		try{
 			conn = getConnection();
 			
-			psmt = conn.prepareStatement(SQL.SELECT_USER);
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_UID);
 			psmt.setString(1, uid);
+			
 			rs = psmt.executeQuery();
 			
 			if(rs.next()){

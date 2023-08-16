@@ -11,7 +11,7 @@
 	<script src="/Jboard1/js/zipcode.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="/Jboard1/js/validation.js"> </script>
-     <script src="/Jboard1/js/checkUser.js"> </script>  
+    <script src="/Jboard1/js/checkUser.js"> </script>  
 </head>
 <body>
     <div id="container">
