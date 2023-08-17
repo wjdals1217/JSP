@@ -1,11 +1,16 @@
+<%@page import="kr.farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
 	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
 	
 	pageContext.include("./_aside"+group+".jsp");
+	
+	ArticleDAO dao = new ArticleDAO();
+	dao.selectArticles();
 %>
 
 	<section class="list">
@@ -21,7 +26,7 @@
 				</tr>
 					<tr>
 						<td>1</td>
-						<td><a href="#">제목</a>&nbsp;[3]</td>
+						<td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>">제목</a>&nbsp;[3]</td>
 						<td>글쓴이</td>
 						<td>작성일</td>
 						<td>조회수</td>
@@ -37,7 +42,7 @@
 		</div>
 	
 		<!-- 글쓰기 버튼 -->
-		<a href="#" class="btnWrite">글쓰기</a>
+		<a href="/Farmstory1/board/write.jsp?group=<%= group %>&cate=<%= cate %>" class="btnWrite">글쓰기</a>
 	</section>
           <!-- 내용 끝 -->
 
