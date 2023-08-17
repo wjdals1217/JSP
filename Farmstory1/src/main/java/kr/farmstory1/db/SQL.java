@@ -3,9 +3,9 @@ package kr.farmstory1.db;
 public class SQL {
 
 	public static final String SELECT_TERMS = "SELECT * FROM `Terms`";
-	public static final String SELECT_USER = "SELECT * FROM `User` WHERE `uid`=? AND `pass`= SHA2(?, 256)";
+	public static final String SELECT_USER = "SELECT * FROM `User` WHERE `uid`=? AND `pass` = SHA2(?, 256)";
 
-	public static final String INSERT_USER = "INSERT INTO `User`SET "
+	public static final String INSERT_USER = "INSERT INTO `User` SET "
 																	+ "`uid`=?, "
 																	+ "`pass`=SHA2(?, 256), "
 																	+ "`name`=?, "
@@ -31,5 +31,5 @@ public class SQL {
 																			+ "WHERE `parent`=0 AND `cate`=? "
 																			+ "ORDER BY `no` DESC "
 																			+ "LIMIT ?, 10";
-	
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0 AND `cate`=?";
 }
