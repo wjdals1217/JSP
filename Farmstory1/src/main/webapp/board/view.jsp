@@ -1,12 +1,25 @@
+<%@page import="kr.farmstory1.dto.ArticleDTO"%>
+<%@page import="kr.farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
+//로그인 여부 확인
+	if(sessUser == null){
+		response.sendRedirect("/Farmstory1/user/login.jsp?success=101");
+	return;
+	}
 	request.setCharacterEncoding("UTF-8");
 
 	String group = request.getParameter("group");
 	String cate = request.getParameter("cate");
+	String no = request.getParameter("no");
+	
+	ArticleDAO dao = new ArticleDAO();
+	
+	ArticleDTO dto  = dao.selectArticle(no);
 	
 	pageContext.include("./_aside"+group+".jsp");
+		
 %>
 <script>
 	$(function() {
@@ -97,15 +110,17 @@
 		<table>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="title" value="제목" readonly /></td>
+				<td><input type="text" name="title" value="<%= dto.getTitle() %>" readonly /></td>
 			</tr>
+			<%if (dto.getFile() > 0) { %>
 			<tr>
 				<td>첨부파일</td>
 				<td><a href="#">2020년 상반기 매출자료.xls</a> <span>7회 다운로드</span></td>
 			</tr>
+			<% } %>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="content" readonly>내용</textarea></td>
+				<td><textarea name="content" readonly><%= dto.getContent() %></textarea></td>
 			</tr>
 		</table>
 		<div>

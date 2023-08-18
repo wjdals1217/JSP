@@ -4,7 +4,7 @@
 UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 	if(sessUser == null){
 		response.sendRedirect("/Jboard1/user/login.jsp?success=101");
-		return;
+	return;
 	}
 %>
 <!DOCTYPE html>
