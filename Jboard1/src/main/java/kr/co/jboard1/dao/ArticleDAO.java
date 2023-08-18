@@ -181,11 +181,11 @@ public class ArticleDAO extends DBHelper {
 		}
 	}
 	
-	public void updateArticleforCommentPlus(String no) {
+	public void updateArticleforCommentPlus(String parent) {
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT_PLUS);
-			psmt.setString(1, no);
+			psmt.setString(1, parent);
 			psmt.executeUpdate();
 			close();
 		}catch(Exception e) {e.printStackTrace();}

@@ -6,6 +6,10 @@
 
 	String uid = request.getParameter("uid");
 	String pass = request.getParameter("pass");
+	String target = request.getParameter("target");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
+	String no = request.getParameter("no");
 	
 	UserDAO dao = UserDAO.getInstance();
 	
@@ -13,9 +17,17 @@
 	
 	if(dto != null) {
 		session.setAttribute("sessUser", dto);
-		response.sendRedirect("/Farmstory1");
+					
+			if(target.equals("write")) {
+				response.sendRedirect("/Farmstory1/board/write.jsp?group="+group+"&cate="+cate);
+			}else if(target.equals("view")) {
+				response.sendRedirect("/Farmstory1/board/view.jsp?group="+group+"&cate="+cate+"&no="+no);
+			}else{
+				response.sendRedirect("/Farmstory1");
+			}
+
 	}else{
-		response.sendRedirect("/Farmstory1");
+		response.sendRedirect("/Farmstory1/user/login.jsp?success=100");
 		
 	}
 %>

@@ -15,7 +15,7 @@
 	// 페이지 관련 변수 선언
 	int start = 0; // LIMIT 쿼리 인덱스 번호
 	int currentPage = 1; // 현재 페이지번호
-	int total = 0; // 글 전체 개수 select count(*) from `article`where parent=0;
+	int total = 0; // 글 전체 개수 select count(*) from `article`where parent=0 and `cate`= ?;
 	int lastPageNum = 0; // 마지막 페이지 번호
 	int pageGroupCurrent = 1; // 10페이지씩 보이게 할 때 현재 페이지의 그룹 번호(1~10페이지는 1번 그룹, 11~20페이지는 2번 그룹)
 	int pageGroupStart = 1; // 10페이지씩 보이게 할 때 페이지 그룹 시작페이지
@@ -74,7 +74,7 @@
 				<% for(ArticleDTO article : articles) { %>
 					<tr>
 						<td><%= pageStartNum-- %></td>  <!-- 아래행으로 갈수록 번호가 하나씩 줄어든다. -->
-						<td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= article.getNo() %>"><%= article.getTitle() %></a>&nbsp;[<%=article.getComment() %>]</td>
+						<td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %></a>&nbsp;[<%=article.getComment() %>]</td>
 						<td><%=article.getNick() %></td>
 						<td><%=article.getRdate() %></td>
 						<td><%=article.getHit() %></td>
@@ -103,7 +103,7 @@
 			<% } %>
 		</div>
 		<!-- 글쓰기 버튼 -->
-		<a href="/Farmstory1/board/write.jsp?group=<%= group %>&cate=<%= cate %>" class="btnWrite">글쓰기</a>
+		<a href="/Farmstory1/board/write.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= currentPage %>" class="btnWrite">글쓰기</a>
 		
 	</section>
           <!-- 내용 끝 -->
