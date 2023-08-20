@@ -34,6 +34,7 @@ public class SQL {
 																			+ "`regip`=?, "
 																			+ "`rDate`=NOW()";
 	public static final String UPDATE_COMMENT_COUNT_PLUS ="UPDATE `Article` SET `comment`= `comment` + 1 WHERE `no`=?";
+	
 	public static final String UPDATE_COMMENT_COUNT_MINUS ="UPDATE `Article` SET `comment`= `comment` - 1 WHERE `no`=?";
 	
 	public static final String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
@@ -60,6 +61,9 @@ public class SQL {
 
 	
 	public static final String DELETE_ARTICLE = "DELETE FROM `Article`	WHERE `no`=? OR `parent`=?";
+
+	public static final String DELETE_COMMENT = "DELETE FROM `Article`	WHERE `no`=?";
+
 
 	
 

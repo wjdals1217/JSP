@@ -80,7 +80,7 @@
 		
 		// 댓글 삭제
 		$('.del').click(function(){
-			const result = comfirm('정말 삭제하시겠습니까?');
+			const result = confirm('정말 삭제하시겠습니까?');
 			
 			if(result) {
 				return true;
@@ -163,7 +163,13 @@
 					
 					<% if(sessUser.getUid().equals(comment.getWriter())) {%>
 					<div>
-							<a href="#"class="del">삭제</a> 
+							<a href="/Farmstory1/board/proc/commentDelete.jsp
+											?group=<%= group%>
+											&cate=<%= cate %>
+											&no=<%= comment.getNo() %>
+											&parent=<%= comment.getParent() %>
+											&pg=<%= pg %>"class="del">삭제</a> 
+											
 							<a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=no %>&pg=<%= pg %>"  class="can">취소</a>
 							<a href="#"  class="mod">수정</a>
 					</div>

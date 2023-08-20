@@ -60,6 +60,21 @@ public class ArticleDAO extends DBHelper{
 			e.printStackTrace();
 		}
 	}
+
+	public void updateCommentCountMinus(String parent) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_COMMENT_COUNT_MINUS);
+			psmt.setString(1, parent);
+			
+			psmt.executeUpdate();
+			
+			close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
@@ -231,4 +246,19 @@ public class ArticleDAO extends DBHelper{
 			e.printStackTrace();
 		}
 	}
-}	
+	
+	public void deleteComment(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+} //ArticleDAO class end
