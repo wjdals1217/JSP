@@ -20,76 +20,84 @@
 	
 	ArticleDAO dao = new ArticleDAO();
 	
+	// 원글 조회
 	ArticleDTO dto  = dao.selectArticle(no);
+	// 댓글 조회
 	List<ArticleDTO> comments = dao.selectComments(no);
 	
 	pageContext.include("./_aside"+group+".jsp");
 		
 %>
 <script>
-	$(function() {
-		let comment = '';
-		// 댓글 수정
+	$(function(){
+		let comment=""; // 댓글에 있는 content를 담아줄 변수 선언
+		
+		// 댓글 수정 .mod= 수정 링크 클래스
 		$('.mod').click(function(e){
-			e.preventDefault();
-			const txt = $(this).text();
+			e.preventDefault(); // 링크의 기능 삭제
+			const txt = $(this).text(); // txt에 링크에 적힌 텍스트 저장
 			
-			if(txt == '수정'){
-				comment = $(this).parent().prev().val();
+			if(txt == '수정') {
+				comment =$(this).parent().prev().val();
+				// a태그의 부모태그(div)의 앞의 태그(textarea)의 값을 comment 변수에 저장
+				// 즉 수정 전 댓글을 저장
 				
-				// 수정모드 전환
-				$(this).parent().prev().addClass('modi');
-				$(this).parent().prev().attr('readonly', false);
-				$(this).parent().prev().focus();
-				$(this).text('수정완료');
-				$(this).prev().show();
+				// 수정모드 전환(수정버튼을 클릭하면 텍스트가 수정완료로 바뀌어야함)
+				$(this).parent().prev().addClass('modi'); // textarea에 클래스 추가
+				$(this).parent().prev().attr('readonly', false); // textarea에 readonly 해제
+				$(this).parent().prev().focus(); // textarea에 커서 주기
+				$(this).text('수정완료'); // a 텍스트 '수정'에서 수정완료로 바꿔줌
+				$(this).prev().show(); // 취소 링크 보이게 만들어주기
 				
-			}else{
-				// 수정 완료 클릭
-				if(confirm('정말 수정하시겠습니까?')){
+			}else{ // '수정'이 아닐때, 즉 수정환료 버튼이 나와있을 떄				
+				// 수정완료 클릭 시
+				// confirm 함수 사용 시 if 사용해 true(확인버튼) false(취소) 선택하는 확인 메세지 창을 띄운다
+				
+				
+				
+				if(confirm('정말 수정하시겠습니까?')) {
 					// 수정 데이터 전송
-					/* $(this).closest('form').submit(); */
-					$(this).parent().parent().submit(); 
+					// $(this).closest('fom').submit(); 
+					//=> this 태그의 위에 있는 태그 중 가장 가까운 form 태그를 찾아서 전송(submit)
+					$(this).parent().parent().submit(); // a 태그의 부모태그(div)의 부모태그(form)를 전송
+				
 				}else{
-					$(this).parent().prev().val(comment);
+					// 취소를 눌렀을 때 comment 값을 textarea에 넣어줌 => 수정 전 댓글로 돌아가게 함
+					$(this).parent().prev().val(comment);	
+					// 이런 식으로 취소 링크 눌렀을 때도 똑같이 만들어줄 수 있음 
+					// 근데 지금은 취소링크를 눌렸을 때 view.jsp로 가게끔 만들어놨음 
+				
 				}
 				
-				// 수정모드 해제
-				$(this).parent().prev().removeClass('modi');
-				$(this).parent().prev().attr('readonly', true);
-				$(this).text('수정');
-				$(this).prev().hide();
+				// 수정모드 해제 => '수정완료' 링크를 '수정'으로 바꿔주고 '취소'는 사라지게
+				$(this).parent().prev().removeClass('modi'); // textarea 클래스 삭제
+				$(this).parent().prev().attr('readonly', true); // readonly 기능 활성화
+				$(this).text('수정'); // '수정완료'를 '수정'으로 바꿈
+				$(this).prev().hide(); // 취소 안 보이게 만듦
+				
 			}
-		});
-		
-		// 댓글 수정 취소
-		/* $('.can').click(function(e){
-			e.preventDefault();
-			// 수정모드 해제
-			$(this).parent().prev().removeClass('modi');
-			$(this).parent().prev().attr('readonly', true);
-			$(this).hide();
-			$(this).next().text('수정');
-		}); */
+		}); // 댓글 수정 끝
 		
 		// 댓글 삭제
 		$('.del').click(function(){
-			const result = confirm('정말 삭제 하시겠습니까?');
+			const result = comfirm('정말 삭제하시겠습니까?');
 			
-			if(result){
+			if(result) {
 				return true;
 			}else{
 				return false;
 			}
-		});
+		}); // 댓글 삭제 끝
 		
 		// 댓글쓰기 취소
- 		const commentContent = document.querySelector('form > textarea[name=content]');
+		const commentContent = document.querySelector('form > textarea[name=content]');
 		const btnCancel = document.querySelector('.btnCancel');
 		btnCancel.onclick = function(e){
 			e.preventDefault();
 			commentContent.value = '';
-		} 
+			
+		} // 댓글쓰기 취소 끝
+		
 		// jQuery 방식
 		/* $('.btnCanel').click(function(e) {
 			e.preventDefault();
@@ -100,14 +108,15 @@
 		const btnDelete = document.getElementsByClassName('btnDelete')[0];
 		btnDelete.onclick = function(){
 			if(confirm('정말 삭제 하시겠습니까?')){
-				return true;/* 삭제페이지로 이동 */
+				return true;
 			}else{
-				return false; /* 이동 해제 */
+				return false;
 			}
 		}
-	});
-
-
+		
+	}); // 제이쿼리 문서불러오기 끝
+	
+	
 </script>
 
 	<section class="view">
@@ -155,7 +164,7 @@
 					<% if(sessUser.getUid().equals(comment.getWriter())) {%>
 					<div>
 							<a href="#"class="del">삭제</a> 
-							<a href="#"  class="can">취소</a>
+							<a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%=no %>&pg=<%= pg %>"  class="can">취소</a>
 							<a href="#"  class="mod">수정</a>
 					</div>
 					<% } %>

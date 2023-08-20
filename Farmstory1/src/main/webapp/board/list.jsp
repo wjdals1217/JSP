@@ -28,7 +28,7 @@
 		currentPage = Integer.parseInt(pg); // pg 파라미터를 String으로 받기 때문에 int로 변환 
 	}
 	
-	// Limit 시작값 계산(글을 10개씩 보여줄거니까 10으로 나눠줌 20개로 보여주고 싶으면 20으로 나누면 됨)
+	// Limit 시작값 계산(글을 10개씩 보여줄거니까 10으로 곱해줌 20개로 보여주고 싶으면 20으로 곱해주면 됨)
 	start = (currentPage - 1)*10; 
 	
 	// 전체 게시물 개수 조회
@@ -48,7 +48,8 @@
 	
 	if(pageGroupEnd > lastPageNum){
 		pageGroupEnd = lastPageNum;
-	} // pageGroupEnd는 10으로 나누어 떨어지기 때문에 페이지 끝 번호가 10으로 나누어지지않으면 내용이 없어도 페이지 번호가 있게 된다. 그래서 lastPageNum이 더 작으면 lastPageNum으로 해야 함.
+	} // pageGroupEnd는 10으로 나누어 떨어지기 때문에 페이지 끝 번호가 10으로 나누어지지않으면 
+	  // 내용이 없어도 페이지 번호가 있게 된다. 그래서 lastPageNum이 더 작으면 lastPageNum으로 해야 함.
 	
 	// 페이지 시작번호 계산(글번호에 적히는 번호임 고유번호가 아니라 글개수로 정해진다. total에서 빼주는 이유는 10개씩 보여줄때 페이지 나오는 첫 글 번호를 정해주기 위해서)
 	pageStartNum = total - start;
@@ -74,7 +75,9 @@
 				<% for(ArticleDTO article : articles) { %>
 					<tr>
 						<td><%= pageStartNum-- %></td>  <!-- 아래행으로 갈수록 번호가 하나씩 줄어든다. -->
-						<td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %></a>&nbsp;[<%=article.getComment() %>]</td>
+						<td><a href="/Farmstory1/board/view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= article.getNo() %>&pg=<%= currentPage %>">
+								<%= article.getTitle() %>
+								</a>&nbsp;[<%=article.getComment() %>]</td>
 						<td><%=article.getNick() %></td>
 						<td><%=article.getRdate() %></td>
 						<td><%=article.getHit() %></td>
@@ -87,19 +90,24 @@
 		<div class="paging">
 			<% if(pageGroupStart > 1) {%> <!-- 조건을 1보다 크게로 잡는 이유는 페이지 번호가 1일때는 이전링크를 보여줄 필요가 없기 때문이다.-->
 			<a href="./list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= pageGroupStart -1 %>" class="prev">이전</a>
-			<!-- 위의 링크를 타고 가면 currentPage번호가 pageGroupStart -1이 된다. 즉 현재 페이지가 25p라면 pageGroupStart는 21p이므로 '이전' 링크를 눌리면 20p가 currentPage가 됨 -->
+			<!-- 위의 링크를 타고 가면 currentPage번호가 pageGroupStart -1이 된다. 
+			즉 현재 페이지가 25p라면 pageGroupStart는 21p이므로 '이전' 링크를 눌리면 20p가 currentPage가 됨 -->
 			<% } %>
 			
-			<%for(int i=pageGroupStart ; i <= pageGroupEnd ; i++) { %> <!-- i가 페이지 그룹의 시작페이지부터 페이지그룹의 마지막페이지 번호만큼 아래 링크를 반복해서 보여줌 -->
-			<a href="./list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= i %>" class="num <%= (currentPage == i)?"current":""%>"><%= i %></a>
+			<%for(int i=pageGroupStart ; i <= pageGroupEnd ; i++) { %> 
+			<!-- i가 페이지 그룹의 시작페이지부터 페이지그룹의 마지막페이지 번호만큼 아래 링크를 반복해서 보여줌 -->
+			<a href="./list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= i %>" class="num <%= (currentPage == i)?"current":""%>">
+				<%= i %>
+			</a>
 			<!-- pg파라미터가 i로 되는 이유는 링크를 눌렀을 때 i의 페이지로 이동을 해줘야 하기때문이다.21~30의 그룹이라 했을 때 링크에는  각 번호의 pg파라미터를 송신 -->
 			<!-- currentPage가 i와 같으면 class에 current를 주고 아니면 공백을 준다. current를 줌으로써 css처리를 해줌 -->
 			<% } %>
 			
 			<% if(pageGroupEnd < lastPageNum) { %>
-			<!-- 조건을 'lastPageNum보다 pageGroupEnd 작다'로 잡는 이유는 크게 되면 lastPageNum이 pageGroupEnd가 되고 그러면 다음 페이지 그룹으로 넘어갈 필요가 없기 때문이다. -->
+			<!-- 조건을 'lastPageNum보다 pageGroupEnd 작다'로 잡는 이유는 크게 되면 lastPageNum이 pageGroupEnd가 되고 다음 페이지 그룹으로 넘어갈 필요가 없기 때문 -->
 			<a href="./list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= pageGroupEnd + 1 %>" class="next">다음</a>
-			<!-- 위의 링크를 타고 가면 currentPage번호가 pageGroupStart + 1이 된다. 즉 현재 페이지가 25p라면 pageGroupEnd는 30p이므로 '다음' 링크를 눌리면 31p가 currentPage가 됨 -->
+			<!-- 위의 링크를 타고 가면 currentPage번호가 pageGroupStart + 1이 된다.
+			 즉 현재 페이지가 25p라면 pageGroupEnd는 30p이므로 '다음' 링크를 눌리면 31p가 currentPage가 됨 -->
 			<% } %>
 		</div>
 		<!-- 글쓰기 버튼 -->
