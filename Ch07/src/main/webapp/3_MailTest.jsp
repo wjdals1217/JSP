@@ -6,21 +6,21 @@
 		<title>3_MailTest</title>
 	</head>
 	<body>
-		<h3>3. 이메일 전송 실습</h3>
+		<h3>3.이메일 전송 실습</h3>
 		
 		<form action="./proc/sendEmail.jsp" method="post">
 			<table border="1">
 				<tr>
-					<td>보내는 사람</td>
-					<td><input type="text" name="sender"/></td>
+					<td>보내는사람</td>
+					<td><input type="text" name="sender"></td>
 				</tr>
 				<tr>
-					<td>받는 사람</td>
-					<td><input type="text" name="receiver"/></td>
+					<td>받는사람</td>
+					<td><input type="text" name="receiver"></td>
 				</tr>
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title"/></td>
+					<td><input type="text" name="title"></td>
 				</tr>
 				<tr>
 					<td>내용</td>
@@ -29,10 +29,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="보내기"/></td>
-				</tr>
-			</table>
-		</form>
-		
+					<td colspan="2"><input type="submit" value="보내기"></td>
+				</tr>			
+			</table>		
+		</form>	
 	</body>
 </html>

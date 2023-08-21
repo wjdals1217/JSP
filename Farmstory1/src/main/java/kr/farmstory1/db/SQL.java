@@ -24,7 +24,21 @@ public class SQL {
 																		+ "`content`=?, "
 																		+ "`writer`=?, "
 																		+ "`regip`=?, "
+
 																		+ "`rDate`=NOW()";
+	
+	public static final String INSERT_PRODUCT = "INSERT INTO `Product`SET "
+																			+ "`type`=?, "
+																			+ "`pName`=?, "
+																			+ "`price`=?, "
+																			+ "`delivery`=?, "
+																			+ "`stock`=?, "
+																			+ "`thumb1`=?, "
+																			+ "`thumb2`=?, "
+																			+ "`thumb3`=?, "
+																			+ "`seller`=?, "
+																			+ "`etc`=?, "
+																			+ "`rDate`=NOW()";
 	
 	public static final String INSERT_COMMENT = "INSERT INTO `Article`SET "
 																			+ "`parent`=?, "
@@ -58,6 +72,8 @@ public class SQL {
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0 AND `cate`=?";
 
 	public static final String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? 	WHERE `no`=?";
+
+	public static final String UPDATE_COMMENT = "UPDATE `Article` SET `content`=?  WHERE `no`=?";
 
 	
 	public static final String DELETE_ARTICLE = "DELETE FROM `Article`	WHERE `no`=? OR `parent`=?";

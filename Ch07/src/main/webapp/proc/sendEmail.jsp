@@ -16,24 +16,23 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 
-	String appPass = "ipradbcayynohrml";
-
+	String appPass = "obnnoffaqsmnjdnj"; // Gmail 앱 비밀번호
+	
 	// Gmail SMTP 서버 설정
 	Properties props = new Properties();
-	props.put("mail.smtp.host", "stmt.gmail.com");
+	props.put("mail.smtp.host", "smtp.gmail.com");
 	props.put("mail.smtp.port", "465");
 	props.put("mail.smtp.auth", "true");
 	props.put("mail.smtp.ssl.enable", "true");
-	props.put("mail.smtp.ssl.trust", "stmt.gmail.com");
+	props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 	
 	// Gmail STMP 세션 생성
 	Session gmailSession = Session.getInstance(props, new Authenticator(){
 		
 		@Override
-		protected PasswordAuthentication getPasswordAuthentication(){
+		protected PasswordAuthentication getPasswordAuthentication() {
 			return new PasswordAuthentication(sender, appPass);
 		}
-
 	});
 	
 	// 메일 발송
@@ -49,6 +48,7 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
+	
 	// 다시 폼 이동
 	response.sendRedirect("../3_MailTest.jsp?success=200");
 %>

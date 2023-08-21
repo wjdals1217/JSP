@@ -57,7 +57,7 @@
                			<a href="/Farmstory1/admin/">관리자 |</a>
                		<%} %>
                 <%} %>
-                <a href="#">고객센터</a>
+                <a href="/Farmstory1/board/list.jsp?group=Community&cate=qna">고객센터</a>
             </p>
             <img src="/Farmstory1/images/head_txt_img.png" alt="3만원 이상 무료배송"/>
             

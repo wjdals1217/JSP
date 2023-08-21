@@ -152,9 +152,12 @@
 			<h3>댓글목록</h3>
 			<% for(ArticleDTO comment : comments) { %>
 			<article class="comment">
-				<form action="#" method="post">
-					<input type="hidden" name="no" value="번호">
-					<input type="hidden" name="parent" value="원글">
+				<form action="/Farmstory1/board/proc/commentUpdate.jsp" method="post">
+					<input type="hidden" name="group" value="<%= group %>">
+					<input type="hidden" name="cate" value="<%= cate %>">
+					<input type="hidden" name="no" value="<%= comment.getNo() %>">
+					<input type="hidden" name="parent" value="<%= comment.getParent() %>">
+					<input type="hidden" name="pg" value="<%= pg %>">
 					<span> 
 						<span><%= comment.getNick() %></span>
 						<span><%= comment.getRdate() %></span>

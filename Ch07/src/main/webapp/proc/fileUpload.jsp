@@ -20,7 +20,7 @@
 	MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 	String uid = mr.getParameter("uid");
 	String name = mr.getParameter("name");
-	String fname = mr.getFilesystemName("fname");
+	String fname = mr.getOriginalFileName("fname");
 	
 	// 파일명 수정
 	int i = fname.lastIndexOf(".");

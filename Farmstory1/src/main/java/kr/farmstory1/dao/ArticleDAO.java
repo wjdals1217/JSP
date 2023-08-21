@@ -232,6 +232,22 @@ public class ArticleDAO extends DBHelper{
 			e.printStackTrace();
 		}
 	}
+
+	public void commentUpdate(String content, String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			
+			psmt.executeUpdate();
+			
+			close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void deleteArticle(String no) {
 		try {
