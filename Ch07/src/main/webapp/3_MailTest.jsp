@@ -1,9 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String success = request.getParameter("success");
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>3_MailTest</title>
+		<script>
+			const success = <%= success%>
+			if(success == 200) {
+				alert("메일이 성공적으로 보내졌습니다.");
+			}
+		</script>
 	</head>
 	<body>
 		<h3>3.이메일 전송 실습</h3>

@@ -68,8 +68,16 @@ public class SQL {
 																				+ "JOIN `User` AS b ON a.`writer`=b.`uid` "
 																				+ "WHERE `parent`=?";
 	
+	public static final String SELECT_PRODUCTS_ALL = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?, 10";
+
+	public static final String SELECT_PRODUCTS_TYPE = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?, 10";
+	
 	// 카테고리별 글 수를 세어줘야 게시판당 관련된 글의 개수를 찾을 수 있다.
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0 AND `cate`=?";
+
+	public static final String SELECT_COUNT_PRODUCTS_ALL = "SELECT COUNT(*) FROM `Product`WHERE `stock` > 0";
+
+	public static final String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT(*) FROM `Product`WHERE `stock` > 0 AND `type`=?";
 
 	public static final String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? 	WHERE `no`=?";
 
