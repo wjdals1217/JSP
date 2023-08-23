@@ -1,3 +1,4 @@
+<%@page import="kr.farmstory1.db.Utils"%>
 <%@page import="kr.farmstory1.dto.ProductDTO"%>
 <%@page import="kr.farmstory1.dao.ProductDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -12,13 +13,19 @@
 %>
 <script>
 	const price = <%= dto.getPrice()%>;
+	const delivery = <%= dto.getDelivery()%>;
+	
 	$(function(){
 		
 		$('input[name=count]').change(function(){
-			let cnt = $(this).val();
-			let total = price * cnt;
+			let count = $(this).val();
+			let total = price * count;
+			let finalPrice = total + delivery;
 			
 			$('input[name=count]').val(count);
+			$('input[name=total]').val(total);
+			$('input[name=final]').val(finalPrice);
+			
 			$('.total').text(total.toLocaleString()+'원');
 		});
 		
@@ -26,8 +33,7 @@
 		$('.btnOrder').click(function(e){
 			e.preventDefault();
 			$('#formOrder').submit();
-			
-			alert('주문하기!');
+
 		});
 		
 	});
@@ -68,7 +74,7 @@
                         <td>배송비</td>
                         <td>
                         <%if(dto.getDelivery() > 0) {%>
-                            <span><%= dto.getDelivery() %></span>원
+                            <span><%= Utils.comma(dto.getDelivery()) %></span>원
                         <% }else {  %>
                            <span>배송비 무료</span>
                         <% } %>
@@ -77,7 +83,7 @@
                     </tr>
                     <tr>
                         <td>판매가격</td>
-                        <td><%= dto.getPriceWithComma() %></td>
+                        <td><%= Utils.comma(dto.getPrice()) %>원</td>
                     </tr>
                     <tr>
                         <td>구매수량</td>
@@ -87,17 +93,19 @@
                     </tr>
                     <tr>
                         <td>합계</td>
-                        <td class="total"><%=dto.getPriceWithComma() %></td>
+                        <td class="total"><%=Utils.comma(dto.getPrice()) %>원</td>
                     </tr>
 
                 </table>
                 <form id="formOrder" action="/Farmstory1/market/order.jsp" method="post">
+                	<input type="hidden" name="thumb2" value="<%=dto.getThumb2()%>"/>
                 	<input type="hidden" name="pName" value="<%=dto.getpName()%>"/>
                 	<input type="hidden" name="pNo" value="<%=dto.getPno()%>"/>
                 	<input type="hidden" name="delivery" value="<%=dto.getDelivery()%>"/>
                 	<input type="hidden" name="price" value="<%=dto.getPrice()%>"/>
                 	<input type="hidden" name="count" value="1" />
                 	<input type="hidden" name="total" value="<%=dto.getPrice()%>"/>
+                	<input type="hidden" name="final" value="<%=dto.getPrice() + dto.getDelivery()%>"/>
                 </form>
                 <a href="#" class="btnOrder">
                      <img src="../images/market_btn_order.gif" alt="바로 구매하기"/>

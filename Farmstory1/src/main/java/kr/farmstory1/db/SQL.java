@@ -90,7 +90,21 @@ public class SQL {
 
 	public static final String DELETE_COMMENT = "DELETE FROM `Article`	WHERE `no`=?";
 
-
+	// Order
+	public static final String INSERT_ORDER = "INSERT INTO `Order` SET "
+																	+"`orderProduct`=?, "
+																	+"`orderCount`=?, "
+																	+"`orderDelivery`=?, "
+																	+"`orderPrice`=?, "
+																	+"`orderTotal`=?, "
+																	+"`receiver`=?, "
+																	+"`hp`=?, "
+																	+"`zip`=?, "
+																	+"`addr1`=?, "
+																	+"`addr2`=?, "
+																	+"`orderEtc`=?, "
+																	+"`orderUser`=?, "
+																	+"`orderDate`=NOW()";
 	
 
 
