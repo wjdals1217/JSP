@@ -82,7 +82,7 @@
             	<%for(ProductDTO product : products){ %>
                 <tr>
                     <td>
-                        <a href="./view.jsp"><img src="/Farmstory1/thumb/<%=product.getThumb1() %>" class = "thumb"></a>
+                        <a href="./view.jsp?pNo=<%=product.getPno()%>"><img src="/Farmstory1/thumb/<%=product.getThumb1() %>" class = "thumb"></a>
                     </td>
                     <td>
                     <%
@@ -93,7 +93,7 @@
                     	}
                     %>
                     </td>
-                    <td><a href="#"><%= product.getpName() %></a></td>
+                    <td><a href="./view.jsp?pNo=<%=product.getPno()%>"><%= product.getpName() %></a></td>
                     <td><strong><%= product.getPriceWithComma() %></strong>원</td>
                 </tr>
                 <% } %>

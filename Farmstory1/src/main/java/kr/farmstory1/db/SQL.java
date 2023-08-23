@@ -68,6 +68,8 @@ public class SQL {
 																				+ "JOIN `User` AS b ON a.`writer`=b.`uid` "
 																				+ "WHERE `parent`=?";
 	
+	public static final String SELECT_PRODUCT = "SELECT * FROM `Product` WHERE `pNo`=?";
+
 	public static final String SELECT_PRODUCTS_ALL = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?, 10";
 
 	public static final String SELECT_PRODUCTS_TYPE = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?, 10";

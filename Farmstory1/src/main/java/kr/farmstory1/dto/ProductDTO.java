@@ -99,19 +99,19 @@ public class ProductDTO {
 	public String getThumb2() {
 		return thumb2;
 	}
-	public void setThumb2(String thumb2) {
+	public void setThumb2ForRename(String thumb2) {
 		this.thumb2 = fileRename(thumb2);
 	}
-	public void setThumb2ForRename(String thumb2) {
+	public void setThumb2(String thumb2) {
 		this.thumb2 = thumb2;
 	}
 	public String getThumb3() {
 		return thumb3;
 	}
-	public void setThumb3(String thumb3) {
+	public void setThumb3ForRename(String thumb3) {
 		this.thumb3 = fileRename(thumb3);
 	}
-	public void setThumb3ForRename(String thumb3) {
+	public void setThumb3(String thumb3) {
 		this.thumb3 = thumb3;
 	}
 	public String getSeller() {
