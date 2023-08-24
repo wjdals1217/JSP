@@ -50,6 +50,33 @@
 	
 	List<ProductDTO> products = dao.selectProducts(start);
 %>
+<script>
+
+	$(function(){
+		
+		
+		$('input[name=all]').change(function(){
+			const isChecked = $(this).is(':checked');
+			
+			if(isChecked){
+				// 전체선택
+				$('input[name=chk]').prop('checked', true);
+			}else{
+				// 전체해제
+				$('input[name=chk]').prop('checked', false);
+			}
+		});
+		
+		
+		$('.productDelete').click(function(e){
+			e.preventDefault();
+			if(confirm('정말 삭제하시겠습니까?')) {
+			$('#formCheck').submit();
+			}
+		});
+		
+	});
+</script>
 <main>
     <%@ include file="./_aside.jsp" %>
     <section id="productList">
@@ -58,7 +85,7 @@
         </nav>
 
         <article>
-
+			<form id="formCheck" action="/Farmstory1/admin/proc/deleteProducts.jsp" method="get">
             <table border="0">
                 <tr>
                     <th><input type="checkbox" name="all"/></th>
@@ -72,7 +99,7 @@
                 </tr>
                 <% for(ProductDTO product : products){ %>
                 <tr>
-                    <td><input type="checkbox" name=""/></td>
+                    <td><input type="checkbox" name="chk" value="<%=product.getPno()%>"/></td>
                     <td><img src="/Farmstory1/thumb/<%= product.getThumb1() %>" class="thumb" alt="상품 이미지"></td>
                     <td><%= product.getPno() %></td>
                     <td><%= product.getpName() %></td>
@@ -91,7 +118,7 @@
                 </tr>
                 <% } %>
             </table>
-
+			</form>
             <p>
                 <a href="#" class="productDelete">선택삭제</a>
                 <a href="./productRegister.jsp" class="productRegister">상품등록</a>

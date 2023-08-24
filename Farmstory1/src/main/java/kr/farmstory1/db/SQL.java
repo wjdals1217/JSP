@@ -88,6 +88,8 @@ public class SQL {
 	
 	public static final String DELETE_ARTICLE = "DELETE FROM `Article`	WHERE `no`=? OR `parent`=?";
 
+	public static final String DELETE_PRODUCT = "DELETE FROM `Product`	WHERE `pNo`=?";
+
 	public static final String DELETE_COMMENT = "DELETE FROM `Article`	WHERE `no`=?";
 
 	// Order

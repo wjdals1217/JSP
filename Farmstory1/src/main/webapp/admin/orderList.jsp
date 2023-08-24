@@ -50,7 +50,7 @@
 	List<OrderDTO> orders = dao.selectOrders(start);
 %>
 <script>
-
+	
 	$(function(){
 		
 		
@@ -75,9 +75,6 @@
 		});
 		
 	});
-	
-	
-
 </script>
 
 <main>

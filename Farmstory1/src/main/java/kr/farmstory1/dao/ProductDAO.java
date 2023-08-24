@@ -172,5 +172,18 @@ public List<ProductDTO> selectProducts(int start) {
 		return total;
 	}
 	public void updateProduct(ProductDTO dto) {}
-	public void deleteProduct(int pNo) {}
+	
+	public void deleteProduct(String pNo) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_PRODUCT);
+			psmt.setString(1, pNo);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+		}
+		
+	}
 }
