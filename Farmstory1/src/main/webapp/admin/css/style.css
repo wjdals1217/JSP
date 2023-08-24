@@ -107,11 +107,11 @@ main > section > article table tr {
     border-bottom: 1px dotted #999;
 }
 main > section > article table tr > th {
-    padding: 12px;
+    padding: 10px;
     background-color: #fbfbfb;
 }
 main > section > article table tr > td {
-    padding: 12px;
+    padding: 6px;
     text-align: center;
 }
 
@@ -231,6 +231,10 @@ footer > p {
     text-decoration: underline;
 }
 
+#orderList .hidden {
+	display: none;	
+}
+
 #orderPopup {
     position: absolute;
     left: 0;
@@ -292,6 +296,11 @@ footer > p {
 
 #orderPopup > section > article > table tr {
     border-bottom: 1px dotted #999;
+}
+
+#orderPopup .thumb > img {
+	width: 120px;
+	height: 120px;
 }
 
 #orderPopup .btnClose {

@@ -61,6 +61,38 @@ public class ProductDAO extends DBHelper{
 		
 		return dto;
 	}
+public List<ProductDTO> selectProducts(int start) {
+		
+		List<ProductDTO> products = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTS_ALL);
+			psmt.setInt(1, start);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setPno(rs.getInt(1));
+				dto.setType(rs.getInt(2));
+				dto.setpName(rs.getString(3));
+				dto.setPrice(rs.getInt(4));
+				dto.setDelivery(rs.getInt(5));
+				dto.setStock(rs.getInt(6));
+				dto.setSold(rs.getInt(7));
+				dto.setThumb1(rs.getString(8));
+				dto.setThumb2(rs.getString(9));
+				dto.setThumb3(rs.getString(10));
+				dto.setSeller(rs.getString(11));
+				dto.setEtc(rs.getString(12));
+				dto.setRdate(rs.getString(13));
+				products.add(dto);
+			}
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return products;
+	}
 	public List<ProductDTO> selectProducts(String type, int start){
 		List<ProductDTO> products = new ArrayList<>();
 		try {
@@ -100,15 +132,33 @@ public class ProductDAO extends DBHelper{
 		return products;
 	}
 	
+	public int selectCountProductsTotal() {
+		int total = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_PRODUCTS_ALL);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
 	public int selectCountProductsTotal(String type) {
 		int total = 0;
 		try {
 			conn = getConnection();
 			if(type.equals("0")) {
-			psmt = conn.prepareStatement(SQL.SELECT_COUNT_PRODUCTS_ALL);
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_PRODUCTS_ALL);
 			}else {			
-			psmt = conn.prepareStatement(SQL.SELECT_COUNT_PRODUCTS_TYPE);
-			psmt.setString(1, type);
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_PRODUCTS_TYPE);
+				psmt.setString(1, type);
 			}
 			rs = psmt.executeQuery();
 			if(rs.next()) {

@@ -15,7 +15,22 @@ public class OrderDTO {
 	private String orderEtc;
 	private String orderUser;
 	private String orderDate;
+	private String pName;
+	private String thumb1;
 	
+	
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getThumb1() {
+		return thumb1;
+	}
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
 	public String getReceiver() {
 		return receiver;
 	}
@@ -84,6 +99,9 @@ public class OrderDTO {
 	}
 	public void setOrderPrice(String orderPrice) {
 		this.orderPrice = Integer.parseInt(orderPrice);
+	}
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 	public int getOrderTotal() {
 		return orderTotal;
