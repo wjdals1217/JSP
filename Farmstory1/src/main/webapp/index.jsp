@@ -33,7 +33,7 @@
 
     <div class="quick">
         <a href="/Farmstory1/board/list.jsp?group=Community&cate=menu"><img src="./images/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
-        <a href="/Farmstory1/boartd/list.jsp?group=Community&cate=chef"><img src="./images/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
+        <a href="/Farmstory1/board/list.jsp?group=Community&cate=chef"><img src="./images/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
     </div>
 
     <div class="latest">
