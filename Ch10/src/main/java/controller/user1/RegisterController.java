@@ -44,7 +44,6 @@ public class RegisterController extends HttpServlet {
 		dto.setHp(hp);
 		dto.setAge(age);
 		
-		User1DAO dao = new User1DAO();
 		service.insertUser1(dto);
 		
 		response.sendRedirect("/Ch10/user1/list.do");
