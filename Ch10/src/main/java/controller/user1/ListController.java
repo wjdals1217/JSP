@@ -26,14 +26,15 @@ public class ListController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/user1/list.jsp");
+		dispatcher.forward(request, response);
 		
 		List<User1DTO> users = service.selectUser1s();
 		
 		// View에서 users 참조하기 위해 requestScope 저장
 		request.setAttribute("users", users);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/user1/list.jsp");
-		dispatcher.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

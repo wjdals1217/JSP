@@ -26,11 +26,12 @@ public class RegisterController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/user1/register.jsp");
-		dispatcher.forward(request, response);		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/user1/register.jsp");
+		dispatcher.forward(request, response);
 		
 		request.setCharacterEncoding("UTF-8");
 		String uid = request.getParameter("uid");

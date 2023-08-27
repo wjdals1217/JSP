@@ -3,11 +3,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>register</title>
+		<title>user2::register</title>
 	</head>
 	<body>
 		<h3>User2 등록</h3>
-		<form action="/Ch10/register.do">
+		<a href="/Ch10">처음으로</a>
+		<a href="/Ch10/user2/list.do">User2목록</a>
+		<form action="/Ch10/user2/register.do" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
@@ -26,7 +28,7 @@
 					<td><input type="number" name="age"/></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="등록"/></td>
+					<td colspan="2" align="right"><input type="submit" value="등록"/></td>
 				</tr>
 			</table>
 		</form>
