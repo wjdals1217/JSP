@@ -6,7 +6,7 @@
                     <caption>사이트 이용약관</caption>
                     <tr>
                         <td>
-                            <textarea name="terms">약관내용</textarea>
+                            <textarea name="terms">${requestScope.terms.getTerms()}</textarea>
                             <label><input type="checkbox" class="terms">&nbsp;동의합니다.</label>
                         </td>
                     </tr>
@@ -16,7 +16,7 @@
                     <caption>개인정보 취급방침</caption>
                     <tr>
                         <td>
-                            <textarea name="privacy">약관내용</textarea>
+                            <textarea name="privacy">${terms.privacy}</textarea>
                             <label><input type="checkbox" class="privacy">&nbsp;동의합니다.</label>
                         </td>
                     </tr>
@@ -24,7 +24,7 @@
                 
                 <div>
                     <a href="./login.jsp" class="btn btnCancel">취소</a>
-                    <a href="./register.jsp" class="btn btnNext">다음</a>
+                    <a href="./register.do" class="btn btnNext">다음</a>
                 </div>
 
             </section>
