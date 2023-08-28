@@ -2,9 +2,9 @@
 <configuration>
 	<property name="NAME" value="Ch11"/>
 	<!--  개발용 -->
-	<!-- <property name="DIR" value="/logs"/> -->
+	<property name="DIR" value="/logs"/>
 	<!--  배포용 -->
-	<property name="DIR" value="/home/tomcat/logs"/>
+	<!-- <property name="DIR" value="/home/tomcat/logs"/> -->
 	
 	<!-- 콘솔 어펜더 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -50,9 +50,9 @@
   	
   
 	<root level="debug">
-    	<!-- <appender-ref ref="STDOUT" /> -->
-    	<appender-ref ref="FILE" />
-    	<appender-ref ref="ROLLING_DAILY" />
+    	<appender-ref ref="STDOUT" />
+    	<!-- <appender-ref ref="FILE" />
+    	<appender-ref ref="ROLLING_DAILY" /> -->
   	</root>
 
 </configuration>

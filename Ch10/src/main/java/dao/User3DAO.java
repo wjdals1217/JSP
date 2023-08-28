@@ -11,6 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dto.User2DTO;
 import dto.User3DTO;
 
 public class User3DAO {
@@ -39,10 +40,10 @@ public class User3DAO {
 			logger.error("User3DAO insertUser3 error : "+e.getMessage());
 		}
 	}
-	public User3DTO selectUser3(String uid) {
+	public User3DTO selectUser3(String uid){
 		User3DTO dto = null;
 		try {
-			logger.info("User3DAO selectUser3...1");
+			logger.info("User3DAO selectUser3 ....1");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `User3` WHERE `uid`=?");
@@ -58,7 +59,7 @@ public class User3DAO {
 			rs.close();
 			psmt.close();
 			conn.close();
-			logger.info("User3DAO selectUser3...2");
+			logger.info("User3DAO selectUser3 ....2");
 		} catch (Exception e) {
 			logger.error("User3DAO selectUser3 error : "+e.getMessage());
 		}
@@ -89,8 +90,23 @@ public class User3DAO {
 		}
 		return users;
 	}
-	public void updateUser3(User3DTO dto) {
-		
+	public void updateUser3(User3DTO dto){
+		try {
+			logger.info("User3DAO updateUser3...1");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
+			PreparedStatement psmt = conn.prepareStatement("UPDATE `User3` SET `name`=?, `hp`=?, `age`=? WHERE `uid`=?");
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getHp());
+			psmt.setInt(3, dto.getAge());
+			psmt.setString(4, dto.getUid());
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+			logger.info("User3DAO updateUser3...2");
+		} catch (Exception e) {
+			logger.error("User3DAO updateUser3 error : " + e.getMessage());
+		}
 	}
 	public void deleteUser3(String uid) {
 		

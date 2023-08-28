@@ -33,4 +33,6 @@ public class User3DTO {
 	public void setAge(String age) {
 		this.age = Integer.parseInt(age);
 	}
+	
+	
 }
