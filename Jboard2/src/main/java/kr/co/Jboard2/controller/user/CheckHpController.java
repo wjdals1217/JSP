@@ -22,6 +22,7 @@ public class CheckHpController extends HttpServlet{
 	private static final long serialVersionUID = -2525928630620076319L;
 	
 	private UserService service = UserService.getInstance();
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
