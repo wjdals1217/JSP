@@ -40,7 +40,29 @@ public class User3DAO {
 		}
 	}
 	public User3DTO selectUser3(String uid) {
-		return null;
+		User3DTO dto = null;
+		try {
+			logger.info("User3DAO selectUser3...1");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
+			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `User3` WHERE `uid`=?");
+			psmt.setString(1, uid);
+			ResultSet rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto = new User3DTO();
+				dto.setUid(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setHp(rs.getString(3));
+				dto.setAge(rs.getInt(4));
+			}
+			rs.close();
+			psmt.close();
+			conn.close();
+			logger.info("User3DAO selectUser3...2");
+		} catch (Exception e) {
+			logger.error("User3DAO selectUser3 error : "+e.getMessage());
+		}
+		return dto;
 	}
 	public List<User3DTO> selectUser3s() {
 		List<User3DTO> users = new ArrayList<>();

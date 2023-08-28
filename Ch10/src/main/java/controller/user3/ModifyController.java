@@ -30,7 +30,18 @@ public class ModifyController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String uid = req.getParameter("uid");
+		String name = req.getParameter("name");
+		String hp = req.getParameter("hp");
+		String age = req.getParameter("age");
+		
+		User3DTO dto = new User3DTO();
+		dto.setUid(uid);
+		dto.setName(name);
+		dto.setHp(hp);
+		dto.setAge(age);
+		
+		service.updateUser3(dto);
+		resp.sendRedirect("/Ch10/user3/list.do");
 	}
 }
