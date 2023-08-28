@@ -109,6 +109,18 @@ public class User3DAO {
 		}
 	}
 	public void deleteUser3(String uid) {
-		
+		try {
+			logger.info("User3DAO deleteUser3...1");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
+			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `User3` WHERE `uid`=?");
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+			logger.info("User3DAO deleteUser3...2");
+		} catch (Exception e) {
+			logger.error("User3DAO deleteUser3 error : "+e.getMessage());
+		}
 	}
 }

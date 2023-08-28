@@ -26,7 +26,7 @@
 				<td>${user.getAge()}</td>
 				<td>
 					<a href="/Ch10/user3/modify.do?uid=${user.getUid()}">수정</a>
-					<a href="/Ch10/user3/delete.do">삭제</a>
+					<a href="/Ch10/user3/delete.do?uid=${user.getUid()}">삭제</a>
 				</td>
 			</tr>
 			</c:forEach>
