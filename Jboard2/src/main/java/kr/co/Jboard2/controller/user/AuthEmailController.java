@@ -26,9 +26,25 @@ public class AuthEmailController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-		int result = service.selectCountEmail(email);
-		int status = service.sendCodeByEmail(email);
+		
+		int result = 0;
+		int status= 0;
+		 	
+		if(name == null) {
+			// 회원가입할 때 이메일 인증
+			result = service.selectCountEmail(email);
+			status = service.sendCodeByEmail(email);
+
+		}else {
+			// 아이디 찾기 할 때 이메일 인증
+			result = service.selectCountNameAndEmail(name, email);
+			if(result == 1) {
+				status = service.sendCodeByEmail(email);
+			}
+		}
+		
 		
 		logger.info("result : "+result);
 		logger.info("status : "+status);
@@ -42,6 +58,7 @@ public class AuthEmailController extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String code = req.getParameter("code");

@@ -15,7 +15,7 @@
     			}else if(!chk2.checked){
     				alert('개인정보 취급방침에 동의하셔야 합니다.');
     			}else{
-    				location.href = '/Jboard2/user/register.do';
+    				location.href = '/Jboard2/user/register.do?terms=check';
     			}
     			
     		});
