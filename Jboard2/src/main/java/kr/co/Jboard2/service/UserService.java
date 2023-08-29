@@ -36,8 +36,8 @@ public class UserService {
 		dao.insertUser(dto);
 	}
 	
-	public UserDTO selectUser(String uid) {
-		return dao.selectUser(uid);
+	public UserDTO selectUser(String uid, String pass) {
+		return dao.selectUser(uid, pass);
 	}
 
 	public int selectCountUid(String uid) {
@@ -50,6 +50,9 @@ public class UserService {
 	
 	public int selectCountHp(String hp) {
 		return dao.selectCountHp(hp);
+	}
+	public int selectCountEmail(String email) {
+		return dao.selectCountEmail(email);
 	}
 	
 	public List<UserDTO> selectUsers() {

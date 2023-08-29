@@ -1,121 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
-<script>
-	window.onload = function(){
-		const btnCheckUid =document.getElementById('btnCheckUid');
-		const inputUid = document.getElementsByName('uid')[0];
-		const uidResult = document.getElementsByClassName('uidResult')[0];
-		
-		btnCheckUid.onclick = function(){
-			const xhr = new XMLHttpRequest();
-			xhr.open('GET', '/Jboard2/user/checkUid.do?uid='+inputUid.value);
-			xhr.send();
-			
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == XMLHttpRequest.DONE){
-					if(xhr.status == 200) {
-						const data = JSON.parse(xhr.response);
-						if(data.result > 0){
-							uidResult.innerText = '이미 사용중인 아이디 입니다.';
-							uidResult.style.color = 'red';
-						}else{
-							uidResult.innerText = '사용가능한 아이디 입니다.';
-							uidResult.style.color = 'green';
-						}
-					}	
-				}// readyState end
-			}//onreadystatechange end 
-		}// btnCheckUidonclick end
-		
-		$('#btnCheckNick').click(function(){
-			const nick = $('input[name=nick]').val();
-			$.ajax({
-				url:'/Jboard2/user/checkNick.do?nick'+nick,
-				type:'get',
-				dataType:'json',
-				success: function(data){
-					if(data.result > 0) {
-						$('.nickResult').css('color', 'red').text('이미 사용중인 별명입니다.');
-					}else{
-						$('.nickResult').css('color', 'green').text('사용가능한 별명입니다.');
-					}
-				}
-			});
-		}); // btnCheckNick click end 
-		
-		$('input[name=hp]').focusout(function() {
-			const hp = $(this).val();
-			const url = '/Jboard2/user/checkHp.do?hp='+hp;
-			$.get(url, function(result){
-				const data = JSON.parse(result);
-				
-				if(data.result > 0) {
-					$('.hpResult').css('color', 'red').text('이미 사용중인 휴대폰 번호입니다.');
-				}else{
-					$('.hpResult').css('color', 'green').text('사용가능한 휴대폰 번호입니다.');
-				}
-			});
-			
-		});
-	} // onload end
-	
-	// 이메일 인증
-	$(function(){
-
-		let preventDoubleClick = false;
-		
-		$('#btnEmailCode').click(function(){
-			const email = $('input[name=email]').val();
-			const jsonData = {"email":email};
-			
-			if(preventDoubleClick){
-				return;
-			}
-			preventDoubleClick = true;
-			$('.resultEmail').text('인증코드 전송 중입니다. 잠시만 기다리세요...');
-			
-			setTimeout(function(){
-				$.ajax({
-					url:'/Jboard2/user/authEmail.do',
-					type:'GET',
-					data: jsonData,
-					dataType:'json',
-					success:function(data){
-						if(data.status > 0){
-							$('.resultEmail').css('color', 'green').text('이메일을 확인 후 인증코드를 입력하세요.');
-							$('.auth').show();
-						}else{
-							$('.resultEmail').css('color', 'red').text('이메일 인증코드 전송이 실패했습니다. 잠시후 다시 시도하십시오.');
-						}
-						preventDoubleClick = false;
-						
-					}
-				});
-			}, 1000);
-		});
-		$('#btnEmailAuth').click(function(){
-			const code = $('input[name=auth]').val();
-			const jsonData = {"code" : code};
-			$.ajax({
-				url:'/Jboard2/user/authEmail.do',
-				type:'POST',
-				data:jsonData,
-				dataType:'json',
-				success: function(data){
-					if(data.result > 0) {
-						$('.resultEmail').css('color', 'green').text('이메일 인증이 완료 되었습니다.');
-					}else{
-						$('.resultEmail').css('color', 'red').text('이메일 인증에 실패했습니다.');
-					}
-				}
-			});
-		});
-	});
-</script>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/Jboard2/js/zipcode.js"></script>
+<script src="/Jboard2/js/validation.js"></script>
+ <!-- 변수가 위에 선언 되어야 하기 때문에 위치를 아래로 이동했음 -->
+<script src="/Jboard2/js/checkUser.js"></script>
+<script src="/Jboard2/js/authEmail.js"></script>
+<!-- 변수가 위에 선언 되어야 하기 때문에 위치를 아래로 이동했음 -->
 <main id="user">
     <section class="register">
-        <form action="/Jboard2/user/register.do" method="post">
+        <form id="formUser" action="/Jboard2/user/register.do" method="post">
             <table border="1">
                 <caption>사이트 이용정보 입력</caption>
                 <tr>
@@ -132,7 +26,10 @@
                 </tr>
                 <tr>
                     <td>비밀번호 확인</td>
-                    <td><input type="password" name="pass2" placeholder="비밀번호 입력 확인"/></td>
+                    <td>
+                    	<input type="password" name="pass2" placeholder="비밀번호 입력 확인"/>
+                    	<span class="passResult"></span>
+                    </td>
                 </tr>
             </table>
 
@@ -141,7 +38,8 @@
                 <tr>
                     <td>이름</td>
                     <td>
-                        <input type="text" name="name" placeholder="이름 입력"/>                        
+                        <input type="text" name="name" placeholder="이름 입력"/>    
+                        <span class="nameResult"></span>                    
                     </td>
                 </tr>
                 <tr>
