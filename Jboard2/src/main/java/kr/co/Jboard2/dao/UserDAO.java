@@ -157,7 +157,7 @@ public class UserDAO extends DBHelper {
 		UserDTO dto = null;
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_USER);
+			psmt = conn.prepareStatement(SQL.SELECT_USER_BY_NAME_AND_EMAIL);
 			psmt.setString(1, name);
 			psmt.setString(2, email);
 			rs = psmt.executeQuery();
