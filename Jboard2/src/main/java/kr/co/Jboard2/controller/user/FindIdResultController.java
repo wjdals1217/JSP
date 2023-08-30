@@ -17,6 +17,11 @@ public class FindIdResultController extends HttpServlet{
 
 	private static final long serialVersionUID = 3267021203483004902L;
 	private UserService service = UserService.getInstance();
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect("/Jboard2/user/findId.do");
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -10,6 +10,8 @@
 		alert('정상적으로 로그아웃되었습니다.');
 	}else if(success ==300) {
 		alert('비밀번호가 변경되었습니다. 다시 로그인 하시기 바랍니다.');
+	}else if(success == 111) {
+		alert('회원가입이 성공적으로 이루어졌습니다. 환영합니다.')
 	}
 </script>
         <main id="user">
