@@ -32,7 +32,20 @@ public class SQL {
 		public static final String SELECT_COUNT_HP ="SELECT COUNT(*) FROM `User` WHERE `hp`=?";
 		public static final String SELECT_TERMS = "SELECT * FROM `Terms`";
 		
-		public static final String UPDATE_USER_PASS = "UPDATE `User` SET `pass`=SHA(?, 256) WHERE `uid`=?";
+		public static final String UPDATE_USER_PASS = "UPDATE `User` SET `pass`=SHA2(?, 256) WHERE `uid`=?";
+
+		public static final String UPDATE_USER_FOR_WITHROW = "UPDATE `User` SET "
+																										+ "`pass`=null,  "
+																										+ "`name`=null,  "
+																										+ "`nick`=null,  "
+																										+ "`email`=null,  "
+																										+ "`hp`=null,  "
+																										+ "`role`=null,  "
+																										+ "`zip`=null,  "
+																										+ "`addr1`=null,  "
+																										+ "`addr2`=null,  "
+																										+ "`leaveDate`=NOW()  "
+																										+ "WHERE `uid`=?";
 		
 		// Article
 		public static final String	INSERT_ARTICLE = "INSERT INTO `Article` SET "

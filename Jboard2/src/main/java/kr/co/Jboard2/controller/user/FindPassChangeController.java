@@ -20,10 +20,16 @@ public class FindPassChangeController extends HttpServlet{
 	private UserService service = UserService.getInstance();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String uid = (String) session.getAttribute("uid");
 		
+		if(uid == null) {
+			resp.sendRedirect("/Jboard2/user/findPass.do");
+		}else {
 		// redirect 요청은 GET 방식으로 받음
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/findPassChange.jsp");
 		dispatcher.forward(req, resp);
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
