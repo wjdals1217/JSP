@@ -36,23 +36,23 @@
 							</c:choose>
 							<c:choose>
 								<c:when test="${member.pos eq '대리'}"><option selected>대리</option></c:when>
-								<c:otherwise><option>사원</option></c:otherwise>
+								<c:otherwise><option>대리</option></c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${member.pos eq '차장'}"><option selected>차장</option></c:when>
-								<c:otherwise><option>사원</option></c:otherwise>
+								<c:otherwise><option>차장</option></c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${member.pos eq '부장'}"><option selected>부장</option></c:when>
-								<c:otherwise><option>사원</option></c:otherwise>
+								<c:otherwise><option>부장</option></c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${member.pos eq '과장'}"><option selected>과장</option></c:when>
-								<c:otherwise><option>사원</option></c:otherwise>
+								<c:otherwise><option>과장</option></c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${member.pos eq '사장'}"><option selected>사장</option></c:when>
-								<c:otherwise><option>사원</option></c:otherwise>
+								<c:otherwise><option>사장</option></c:otherwise>
 							</c:choose>
 						</select>
 					</td>
