@@ -114,12 +114,24 @@ public class User5DAO {
 			psmt.close();
 			conn.close();
 			logger.info("updateUser5()...2");
-	} catch (Exception e) {
-		logger.error("updateUser5() error : "+e.getMessage());
-	}
+		} catch (Exception e) {
+			logger.error("updateUser5() error : "+e.getMessage());
+		}
 	}
 	public void deleteUser5(String uid) {
-		
+		try {
+			logger.info("deleteUser5()...1");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
+			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `User5` WHERE `uid`=?");
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+			logger.info("deleteUser5()...2");
+		} catch (Exception e) {
+			logger.error("deleteUser5() error : "+e.getMessage());
+		}
 	}
 	
 }

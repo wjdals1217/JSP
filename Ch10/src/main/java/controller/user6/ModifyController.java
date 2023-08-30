@@ -1,4 +1,4 @@
-package controller.user5;
+package controller.user6;
 
 import java.io.IOException;
 
@@ -9,46 +9,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import dto.User6DTO;
+import service.User6Service;
 
-import dto.User5DTO;
-import service.User5Service;
+@WebServlet("/user6/modify.do")
+public class ModifyController extends HttpServlet{
 
-@WebServlet("/user5/register.do")
-public class RegisterController extends HttpServlet{
-
-	private static final long serialVersionUID = 8312637816853853119L;
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private User5Service service = User5Service.getInstance();
-
+	private static final long serialVersionUID = 9050726340890586234L;
+	private User6Service service = User6Service.getInstance();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user5/register.jsp");
+
+		String hp = req.getParameter("hp");
+		
+		User6DTO user = service.selectUser6(hp);
+		req.setAttribute("user", user);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/user6/modify.jsp");
 		dispatcher.forward(req, resp);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uid = req.getParameter("uid");
 		String name = req.getParameter("name");
 		String birth = req.getParameter("birth");
-		String gender = req.getParameter("gender");
 		String age = req.getParameter("age");
 		String address = req.getParameter("address");
 		String hp = req.getParameter("hp");
 		
-		User5DTO dto = new User5DTO();
-		dto.setUid(uid);
+		User6DTO dto = new User6DTO();
 		dto.setName(name);
 		dto.setBirth(birth);
-		dto.setGender(gender);
 		dto.setAge(age);
 		dto.setAddress(address);
 		dto.setHp(hp);
 		
-		service.insertUser5(dto);
+		service.updateUser6(dto);
 		
-		resp.sendRedirect("/Ch10/user5/list.do");
+		resp.sendRedirect("/Ch10/user6/list.do");
 	}
-	
 }
