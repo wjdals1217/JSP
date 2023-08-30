@@ -11,7 +11,7 @@ public class User4Service {
 	public void insertUser4(User4DTO dto) {
 		dao.insertUser4(dto);
 	}
-	public User4DTO selectUser4(int seq) {
+	public User4DTO selectUser4(String seq) {
 		return dao.selectUser4(seq);
 	}
 	public List<User4DTO> selectUser4s() {

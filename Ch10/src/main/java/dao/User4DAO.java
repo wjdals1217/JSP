@@ -38,21 +38,22 @@ public class User4DAO {
 			logger.error("User4DAO insertUser4 error : "+e.getMessage());
 		}
 	}
-	public User4DTO selectUser4(int seq) {
+	public User4DTO selectUser4(String seq) {
 		User4DTO dto = null;
 		try {
 			logger.info("User4DAO selectUser4...1");
-			Class.forName("com.mysql.cj.jdbc.Driveer");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `User4` WHERE `seq`=?");
-			psmt.setInt(1, seq);
+			psmt.setString(1, seq);
 			ResultSet rs = psmt.executeQuery();
 			if(rs.next()) {
 				dto = new User4DTO();
-				dto.setName(rs.getString(1));
-				dto.setGender(rs.getInt(2));
-				dto.setAge(rs.getInt(3));;
-				dto.setAddr(rs.getString(4));
+				dto.setSeq(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setGender(rs.getInt(3));;
+				dto.setAge(rs.getInt(4));
+				dto.setAddr(rs.getString(5));
 			}
 			rs.close();
 			psmt.close();
