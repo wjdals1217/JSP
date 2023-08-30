@@ -20,7 +20,7 @@ public class User4Service {
 	public void updateUser4(User4DTO dto) {
 		dao.updateUser4(dto);
 	}
-	public void deleteUser4(int seq) {
+	public void deleteUser4(String seq) {
 		dao.deleteUser4(seq);
 	}
 }

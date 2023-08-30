@@ -95,7 +95,7 @@ public class User4DAO {
 			logger.info("User4DAO updateUser4...1");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
-			PreparedStatement psmt = conn.prepareStatement("UPDATE `User` SET `name`=?, `gender`=?, `age`=?, `addr`=? WHERE `seq`=?");
+			PreparedStatement psmt = conn.prepareStatement("UPDATE `User4` SET `name`=?, `gender`=?, `age`=?, `addr`=? WHERE `seq`=?");
 			psmt.setString(1, dto.getName());
 			psmt.setInt(2, dto.getGender());
 			psmt.setInt(3, dto.getAge());
@@ -109,13 +109,13 @@ public class User4DAO {
 			logger.error("User4DAO updateUser4 error : "+e.getMessage());
 		}
 	}
-	public void deleteUser4(int seq) {
+	public void deleteUser4(String seq) {
 		try {
 			logger.info("User4DAO deleteUser4...1");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `User4` WHERE `seq`=?");
-			psmt.setInt(1, seq);
+			psmt.setString(1, seq);
 			psmt.executeUpdate();
 			psmt.close();
 			conn.close();
