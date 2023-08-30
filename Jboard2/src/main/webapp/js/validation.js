@@ -6,7 +6,7 @@
 	let isPassOk 	= false;
 	let isNameOk 	= false;
 	let isNickOk 		= false;
-	let isEmaileOk 	= false;
+	let isEmailOk 	= false;
 	let isHpOk 		= false;
 	
 	// 데이터 검증에 사용하는 정규표현식

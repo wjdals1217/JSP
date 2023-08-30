@@ -7,10 +7,12 @@ $(function(){
 	
 	$('#btnEmailCode').click(function(){
 		
+		const type = $('input[name=type]').val();
 		const name = $('input[name=name]').val();
 		const email = $('input[name=email]').val();
 		
 		const jsonData = {
+									"type" : type,
 									"name": name, 
 									"email":email
 									};
@@ -20,6 +22,7 @@ $(function(){
 		}
 		preventDoubleClick = true;
 		$('.resultEmail').text('잠시만 기다리세요...');
+		$('.resultEmailForId').text('잠시만 기다리세요...');
 		
 		setTimeout(function(){
 			$.ajax({
