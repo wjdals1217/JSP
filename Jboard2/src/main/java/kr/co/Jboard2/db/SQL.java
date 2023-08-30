@@ -46,6 +46,15 @@ public class SQL {
 																										+ "`addr2`=null,  "
 																										+ "`leaveDate`=NOW()  "
 																										+ "WHERE `uid`=?";
+		public static final String UPDATE_USER = "UPDATE `User` SET "
+																			+ "`name`=?,  "
+																			+ "`nick`=?,  "
+																			+ "`email`=?,  "
+																			+ "`hp`=?,  "
+																			+ "`zip`=?,  "
+																			+ "`addr1`=?,  "
+																			+ "`addr2`=?  "
+																			+ "WHERE `uid`=?";
 		
 		// Article
 		public static final String	INSERT_ARTICLE = "INSERT INTO `Article` SET "

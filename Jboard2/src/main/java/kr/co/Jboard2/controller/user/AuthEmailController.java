@@ -53,7 +53,13 @@ public class AuthEmailController extends HttpServlet {
 			if(result == 1) {
 				status = service.sendCodeByEmail(email);
 			}
-	}
+		}else if(type.equals("MODIFY")) {
+			// 이메일 수정할 때 이메일 인증
+			result = service.selectCountEmail(email);
+			if(result == 0) {
+				status = service.sendCodeByEmail(email);
+			}
+		}
 		
 		
 		logger.info("result : "+result);
