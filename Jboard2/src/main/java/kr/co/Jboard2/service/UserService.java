@@ -57,6 +57,9 @@ public class UserService {
 	public int selectCountNameAndEmail(String name, String email) {
 		return dao.selectCountNameAndEmail(name, email);
 	}
+	public int selectCountUidAndEmail(String uid, String email) {
+		return dao.selectCountUidAndEmail(uid, email);
+	}
 	
 	public UserDTO selectUserByNameAndEmail(String name, String email) {
 		return dao.selectUserByNameAndEmail(name, email);
@@ -68,6 +71,10 @@ public class UserService {
 	
 	public void updateUser(UserDTO dto) {
 		dao.updateUser(dto);
+	}
+	
+	public void updateUserPass(String pass, String uid) {
+		dao.updateUserPass(pass, uid);
 	}
 	
 	public void deleteUser(String uid) {

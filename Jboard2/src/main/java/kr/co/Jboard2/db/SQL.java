@@ -21,13 +21,18 @@ public class SQL {
 
 		public static final String SELECT_USER_BY_NAME_AND_EMAIL ="SELECT * FROM `User` WHERE `name`=? AND `email`=?";
 
+		public static final String SELECT_USER_BY_UID_AND_EMAIL ="SELECT * FROM `User` WHERE `uid`=? AND `email`=?";
+
 		public static final String SELECT_COUNT_UID ="SELECT COUNT(*) FROM `User` WHERE `uid`=?";
 		
 		public static final String SELECT_COUNT_NICK ="SELECT COUNT(*) FROM `User` WHERE  `nick`=?";
 		public static final String SELECT_COUNT_EMAIL =" SELECT COUNT(*) FROM `User` WHERE `email`=?";
 		public static final String SELECT_COUNT_NAME_EMAIL =" SELECT COUNT(*) FROM `User` WHERE `name`=? AND `email`=?";
+		public static final String SELECT_COUNT_UID_EMAIL =" SELECT COUNT(*) FROM `User` WHERE `uid`=? AND `email`=?";
 		public static final String SELECT_COUNT_HP ="SELECT COUNT(*) FROM `User` WHERE `hp`=?";
 		public static final String SELECT_TERMS = "SELECT * FROM `Terms`";
+		
+		public static final String UPDATE_USER_PASS = "UPDATE `User` SET `pass`=SHA(?, 256) WHERE `uid`=?";
 		
 		// Article
 		public static final String	INSERT_ARTICLE = "INSERT INTO `Article` SET "

@@ -1,8 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<script src="/Jboard2/js/validation.js"></script>
+<script src="/Jboard2/js/authEmail.js"></script>
+<script>
+	$(function(){
+		$('.btnNext').click(function(e){
+			e.preventDefault();
+			if(isEmailOk) {
+				$('#formFindPass').submit();
+			}else{
+				alert('이메일 인증 해주십시오.');
+			}
+		});
+	});
+</script>
         <main id="user">
             <section class="find findPass">
-                <form action="#">
+                <form id="formFindPass" action="/Jboard2/user/findPass.do" method="post">
+					<input type="hidden" name="type" value="FIND_PASS"/>                
                     <table border="0">
                         <caption>비밀번호 찾기</caption>                        
                         <tr>
@@ -14,11 +29,12 @@
                             <td>
                                 <div>
                                     <input type="email" name="email" placeholder="이메일 입력"/>
-                                    <button type="button" class="btnAuth">인증번호 받기</button>
+                                    <button id="btnEmailCode" type="button" class="btnAuth">인증번호 받기</button>
+									<span class="resultEmailForPass"></span>
                                 </div>
                                 <div>
                                     <input type="text" name="auth" disabled placeholder="인증번호 입력"/>
-                                    <button type="button" class="btnConfirm">확인</button>
+                                    <button id="btnEmailAuth" type="button" class="btnConfirm">확인</button>
                                 </div>
                             </td>
                         </tr>                        
@@ -32,8 +48,8 @@
                 </p>
 
                 <div>
-                    <a href="./login.jsp" class="btn btnCancel">취소</a>
-                    <a href="./findPwChange.jsp" class="btn btnNext">다음</a>
+                    <a href="/user/login.do" class="btn btnCancel">취소</a>
+                    <a href="#" class="btn btnNext">다음</a>
                 </div>
             </section>
         </main>
