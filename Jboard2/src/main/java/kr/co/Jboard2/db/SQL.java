@@ -64,6 +64,12 @@ public class SQL {
 																				+ "`regip`=?, "
 																				+	"`rdate`=NOW()";
 
+		public static final String	INSERT_FILE = "INSERT INTO `File` SET "
+																			+ "`ano`=?, "
+																			+ "`oriName`= ?, "
+																			+ "`newName`=?, "
+																			+	"`rdate`=NOW()";
+
 		public static final String	INSERT_COMMENT = "INSERT INTO `Article` SET "
 																				+ "`parent`= ?, "
 																				+ "`content`= ?, "
@@ -71,6 +77,7 @@ public class SQL {
 																				+ "`regip`=?, "
 																				+	"`rdate`=NOW()";
 		
+		public static final String SELECT_ARTICLE_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 		public static final String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 		
 		public static final String SELECT_ARTICLES = "SELECT A.*, B.`nick` FROM `Article` AS A "
