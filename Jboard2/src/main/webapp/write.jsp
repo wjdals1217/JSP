@@ -19,7 +19,7 @@
                         </tr>
                         <tr>
                             <th>파일</th>
-                            <td>
+                            <td> <!-- 파일 여러 개 추가 하고 싶으면 multiple속성 추가 -->
                                 <input type="file" name="file"/>
                             </td>
                         </tr>

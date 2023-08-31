@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.net.ApplicationBufferHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -26,8 +28,9 @@ import kr.co.Jboard2.service.FileService;
 public class WriteController extends HttpServlet{
 
 	private static final long serialVersionUID = -9051224184952512645L;
-	private ArticleService Articleservice = new ArticleService();
+	private ArticleService articleService = new ArticleService();
 	private FileService fileService = FileService.INSTANCE;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/write.jsp");
@@ -37,18 +40,8 @@ public class WriteController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// 파일 업로드 경로 구하기
-		//context : 환경 ctx가 application 객체라 생각하면 된다
-		ServletContext ctx =  req.getServletContext();
-		String path = ctx.getRealPath("/upload");
-
-		// 최대 업로드 파일 크기(10MB) 1MB * 1MB * 10
-		int maxSize = 1024 * 1024 * 10;
+		MultipartRequest mr = articleService.uploadFile(req);
 		
-		// 파일 업로드 및 Multipart 객체 생성
-		// 파일 업로드 MultipartRequest생성자는 업로드 로직을 수행
-		MultipartRequest mr = new MultipartRequest(req, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-
 		// 폼 데이터 수신
 		String title = mr.getParameter("title");
 		String content = mr.getParameter("content");
@@ -56,30 +49,28 @@ public class WriteController extends HttpServlet{
 		String oName = mr.getOriginalFileName("file");
 		String regip = req.getRemoteAddr();
 		
+		logger.debug("title : "+title);
+		logger.debug("content : "+content);
+		logger.debug("writer : "+writer);
+		logger.debug("oName : "+oName);
+		logger.debug("regip : "+regip);
+		
 		// DTO 생성
 		ArticleDTO dto = new ArticleDTO();
 		dto.setTitle(title);
 		dto.setContent(content);
+			//파일첨부개수
+			dto.setFile(oName);
 		dto.setWriter(writer);
 		dto.setRegip(regip);
 		
 		// Article Insert
-		int no = Articleservice.insertArticle(dto);
+		int no = articleService.insertArticle(dto);
 		
 		// 파일명 수정 및 파일테이블 Insert
 		// 파일 첨부를 했을 때
 		if(oName != null) {
-			int i = oName.lastIndexOf(".");
-			String ext = oName.substring(i); // 확장자명(. 뒤 부터 마지막 까지)
-			String uuid = UUID.randomUUID().toString();
-			String sName = uuid + ext;
-			
-			File f1 = new File(path+"/"+oName);
-			File f2 = new File(path+"/"+sName);
-			
-			// 파일명 수정
-			f1.renameTo(f2);
-			
+			String sName = articleService.renameToFile(req, oName);
 			// 파일 테이블 Insert
 			FileDTO fileDTO = new FileDTO();
 			// ano가 필요하기 때문에 Article 테이블 isert가 먼저 일어나야 함

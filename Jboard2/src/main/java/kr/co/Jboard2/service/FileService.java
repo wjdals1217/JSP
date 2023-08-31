@@ -7,6 +7,7 @@ import kr.co.Jboard2.dto.FileDTO;
 
 public enum FileService {
 	INSTANCE;
+	
 	private FileDAO dao = new FileDAO();
 	
 	public void insertFile(FileDTO dto) {
