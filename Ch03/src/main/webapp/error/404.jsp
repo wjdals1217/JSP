@@ -9,6 +9,6 @@
 	 <h3>요청하신 페이지가 없습니다. 다시 확인하시기 바랍니다.</h3>	
 	 
 	 
-	 <a href="../6_exception.jsp">뒤로가기</a>
+	 <a href="/Ch03/6_exception.jsp">뒤로가기</a>
 	</body>
 </html>

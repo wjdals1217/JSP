@@ -20,6 +20,7 @@
 		<h3>5.session 내장객체</h3>
 		
 		<h4>session ID 확인</h4>
+		<!-- 자동으로 생성되는 고유식별번호 -->
 		<%= session.getId() %>
 		
 		<h4>session 설정</h4> 
