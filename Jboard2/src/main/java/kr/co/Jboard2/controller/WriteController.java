@@ -28,18 +28,24 @@ import kr.co.Jboard2.service.FileService;
 public class WriteController extends HttpServlet{
 
 	private static final long serialVersionUID = -9051224184952512645L;
+	
 	private ArticleService articleService = new ArticleService();
 	private FileService fileService = FileService.INSTANCE;
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	// 글쓰기 페이지 forward
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/write.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
+	// 글쓰기 페이지에서 폼 데이터 수신 후 DB 저장
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		// 파일 업로드
 		MultipartRequest mr = articleService.uploadFile(req);
 		
 		// 폼 데이터 수신
@@ -52,36 +58,39 @@ public class WriteController extends HttpServlet{
 		logger.debug("title : "+title);
 		logger.debug("content : "+content);
 		logger.debug("writer : "+writer);
-		logger.debug("oName : "+oName);
+		logger.debug("oName : "+oName); // 파일 원본 이름
 		logger.debug("regip : "+regip);
 		
 		// DTO 생성
 		ArticleDTO dto = new ArticleDTO();
-		dto.setTitle(title);
-		dto.setContent(content);
-			//파일첨부개수
-			dto.setFile(oName);
-		dto.setWriter(writer);
-		dto.setRegip(regip);
+			dto.setTitle(title);
+			dto.setContent(content);
+			dto.setFile(oName); //파일첨부개수
+			dto.setWriter(writer);
+			dto.setRegip(regip);
 		
 		// Article Insert
-		int no = articleService.insertArticle(dto);
+			//no : 최신 글 번호
+		int no = articleService.insertArticle(dto); 
+		logger.debug("no"+no);
 		
 		// 파일명 수정 및 파일테이블 Insert
-		// 파일 첨부를 했을 때
-		if(oName != null) {
-			String sName = articleService.renameToFile(req, oName);
+		if(oName != null) { 																   // 파일 첨부를 했을 때
+			
+			String sName = articleService.renameToFile(req, oName); // 파일 이름 수정
+			
 			// 파일 테이블 Insert
 			FileDTO fileDTO = new FileDTO();
+			
 			// ano가 필요하기 때문에 Article 테이블 isert가 먼저 일어나야 함
 			fileDTO.setAno(no);
 			fileDTO.setOriName(oName);
 			fileDTO.setNewName(sName);
 			
-			fileService.insertFile(fileDTO);
+			fileService.insertFile(fileDTO); // DB에 파일 정보 저장
 		}
 		
-		// 리다이렉트
+		// list 페이지로 리다이렉트
 		resp.sendRedirect("/Jboard2/list.do");
 	}
 }

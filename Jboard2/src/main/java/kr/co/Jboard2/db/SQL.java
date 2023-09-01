@@ -80,11 +80,11 @@ public class SQL {
 		
 		public static final String SELECT_ARTICLE_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 		public static final String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
+		public static final String UPDATE_HIT_COUNT = "UPDATE `Article`SET `hit`= `hit`+1 WHERE `no`=?";
 		
-		public static final String SELECT_ARTICLES = "SELECT A.*, B.`nick` FROM `Article` AS A "
-																			+ "JOIN `User` AS B ON A.writer = B.uid "
+		public static final String SELECT_ARTICLES = "SELECT * FROM `Article` "
 																			+ "WHERE `parent`=0 "
-																			+ "ORDER BY A.`no` DESC "
+																			+ "ORDER BY `no` DESC "
 																			+ "LIMIT ?, 10";
 		
 		public static final String SELECT_COMMENTS = "SELECT A.*, B.`nick` FROM `Article` AS A "
