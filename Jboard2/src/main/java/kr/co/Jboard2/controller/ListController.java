@@ -34,9 +34,11 @@ public class ListController extends HttpServlet{
 		HttpSession session = req.getSession();
 		UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 		
-		// 페이지 번호 데이터 수신
+		// 데이터 수신
 		String pg  = req.getParameter("pg");
+		String search  = req.getParameter("search");
 		logger.debug("pg : "+pg);
+		logger.debug("search : "+search);
 		
 		// 현재 페이지 계산
 		int currentPage = service.currentPage(pg);
@@ -45,7 +47,7 @@ public class ListController extends HttpServlet{
 		int start = service.getStartNum(currentPage);
 		
 		// 전체 게시물 개수 조회
-		int total = service.selectCountTotal();
+		int total = service.selectCountTotal(search);
 		
 		// 마지막 페이지 번호 계산
 		int lastPageNum = service.getLastPageNum(total);
@@ -57,7 +59,7 @@ public class ListController extends HttpServlet{
 		int pageStartNum = service.getPageStartNum(total, currentPage);
 		
 		// 현재 페이지 게시물 조회
-		List<ArticleDTO> articles = service.selectArticles(start);
+		List<ArticleDTO> articles = service.selectArticles(start, search);
 		
 		
 		if(sessUser != null) { // 로그인 했을 때 list 페이지 forward
@@ -69,6 +71,7 @@ public class ListController extends HttpServlet{
 			req.setAttribute("pageGroupStart", result[0]);
 			req.setAttribute("pageGroupEnd", result[1]);
 			req.setAttribute("pageStartNum", pageStartNum+1);
+			req.setAttribute("search", search);
 			
 			RequestDispatcher dispatcher= req.getRequestDispatcher("/list.jsp");
 			dispatcher.forward(req, resp);

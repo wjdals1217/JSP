@@ -3,8 +3,8 @@
 <%@ include file="./_header.jsp" %>
         <main id="board">
             <section class="list">                
-                <form action="#">
-                    <input type="text" name="search" placeholder="제목 키워드, 글쓴이 검색">
+                <form action="/Jboard2/list.do" method="get">
+                    <input type="text" name="search" placeholder="제목 키워드 검색">
                     <input type="submit" value="검색">
                 </form>
                 
@@ -21,7 +21,7 @@
                     	<tr>
                         <td>${pageStartNum = pageStartNum - 1}</td>
                         <td><a href="/Jboard2/view.do?no=${article.no}">${article.title}[${article.comment}]</a></td>
-                        <td>${sessUser.nick}</td>
+                        <td>${article.nick}</td>
                         <td>${article.rdate}</td>
                         <td>${article.hit}</td>
                     </tr>
@@ -40,6 +40,7 @@
 		            </c:if>
                 </div>
                 <a href="/Jboard2/write.do" class="btn btnWrite">글쓰기</a>
+                <a href="/Jboard2/list.do" class="btn btnList">목록</a>
                 
             </section>
         </main>

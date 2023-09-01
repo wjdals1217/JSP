@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonObject;
+
 import kr.co.Jboard2.dto.ArticleDTO;
 import kr.co.Jboard2.service.ArticleService;
 
@@ -39,13 +41,44 @@ public class CommentController extends HttpServlet{
 		dto.setWriter(writer);
 		dto.setRegip(regip);
 		
-		// 댓글 입력
-		service.insertComment(dto);
+		if(content != null) {
+			// 댓글 입력
+			int result = service.insertComment(dto);
+			
+			// 댓글 카운트 수정 Plus
+			service.updateArticleForCommentPlus(parent);
+			
+			// 리다이렉트(ajax로 요청했기 때문에 json으로 출력해야한다.)
+			//resp.sendRedirect("/Jboard2/view.do?no="+parent);
+			
+			// Json 출력(AJAX 요청)
+			JsonObject json = new JsonObject();
+			json.addProperty("result", result);
+			resp.getWriter().print(json);
+			
+		}
 		
-		// 댓글 카운트 수정 Plus
-		service.updateArticleForCommentPlus(parent);
+	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String kind = req.getParameter("kind");
+		String no = req.getParameter("no");
+		String parent = req.getParameter("parent");
+		int result = 0;
 		
-		// 리다이렉트
-		resp.sendRedirect("/Jboard2/view.do?no="+parent);
+		switch(kind) {
+			case "REMOVE":
+				result = service.deleteComment(no);
+				logger.debug("result : "+result);
+				service.updateArticleForCommentMinus(parent);
+				
+				break;
+				
+		}
+
+		// Json 출력(AJAX 요청)
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		resp.getWriter().print(json);
 	}
 }

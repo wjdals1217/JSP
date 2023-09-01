@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.Jboard2.db.DBHelper;
 import kr.co.Jboard2.db.SQL;
 import kr.co.Jboard2.dto.ArticleDTO;
+import kr.co.Jboard2.dto.FileDTO;
 
 public class ArticleDAO extends DBHelper{
 	
@@ -40,7 +41,8 @@ public class ArticleDAO extends DBHelper{
 		}
 		return no;
 	}
-	public void insertComment(ArticleDTO dto) {
+	public int insertComment(ArticleDTO dto) {
+		int result = 0;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
@@ -48,11 +50,12 @@ public class ArticleDAO extends DBHelper{
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getWriter());
 			psmt.setString(4, dto.getRegip());
-			psmt.executeUpdate();
+			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
 			logger.error("insertArticle() error : "+e.getMessage());
 		}
+		return result;
 	}
 	
 	public ArticleDTO selectArticle(String no) {
@@ -80,7 +83,19 @@ public class ArticleDAO extends DBHelper{
 				dto.setWriter(rs.getString(9));
 				dto.setRegip(rs.getString(10));
 				dto.setRdate(rs.getString(11));
+				// 파일정보
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setFno(rs.getInt(12));
+				fileDTO.setAno(rs.getInt(13));
+				fileDTO.setOriName(rs.getString(14));
+				fileDTO.setNewName(rs.getString(15));
+				fileDTO.setDownload(rs.getInt(16));
+				fileDTO.setRdate(rs.getString(17));
+				
+				// dto를 return하기 때문에 dto에 FileDTO 객체를 넣어줘야 함
+				dto.setFileDTO(fileDTO);
 			}
+			psmt2.close();
 			close();
 		} catch (Exception e) {
 			logger.error("selectArticle() error : "+e.getMessage());
@@ -88,12 +103,17 @@ public class ArticleDAO extends DBHelper{
 		return dto;
 	}
 
-	public int selectCountTotal() {
+	public int selectCountTotal(String search) {
 		int total = 0;
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTAL);
+			if(search == null) {
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL);
+			}else {
+				psmt = conn.prepareStatement(SQL.SELECT_COUNT_TOTAL_FOR_SEARCH);
+				psmt.setString(1, "%"+search+"%");
+			}
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				total = rs.getInt(1);
 			}
@@ -104,12 +124,19 @@ public class ArticleDAO extends DBHelper{
 		return total;
 	}
 	
-	public List<ArticleDTO> selectArticles(int start) {
+	public List<ArticleDTO> selectArticles(int start, String search) {
 		List<ArticleDTO> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
-			psmt.setInt(1, start);
+			if(search == null) {
+				psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
+				psmt.setInt(1, start);
+			}else {
+				psmt = conn.prepareStatement(SQL.SELECT_ARTICLES_FOR_SEARCH);
+				psmt.setString(1, "%"+search+"%");
+				psmt.setInt(2, start);
+			}
+			
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ArticleDTO dto = new ArticleDTO();
@@ -124,6 +151,7 @@ public class ArticleDAO extends DBHelper{
 				dto.setWriter(rs.getString(9));
 				dto.setRegip(rs.getString(10));
 				dto.setRdate(rs.getString(11));
+				dto.setNick(rs.getString(12));
 				articles.add(dto);
 			}
 			close();
@@ -186,11 +214,34 @@ public class ArticleDAO extends DBHelper{
 			psmt.executeUpdate();
 			close();
 		}catch (Exception e) {
-			e.printStackTrace();
+			logger.error("updateArticleForCommentMinus"+e.getMessage());
 		}
 	}
 	
 	public void deleteArticle(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("deleteArticle() error : "+e.getMessage());
+		}
 		
+	}
+	public int deleteComment(String no) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("deleteComment() error : "+e.getMessage());
+		}
+		return result;
 	}
 }
