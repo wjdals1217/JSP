@@ -1,27 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <script>
-	window.onload = function(){
-		const chk1 = document.getElementsByName('chk1')[0];
-		const chk2 = document.getElementsByName('chk2')[0];
-		const btnNext = document.getElementsByClassName('btnNext')[0];
+	$(function(){
 		
-		btnNext.addEventListener('click', function(e){
-			e.preventDefault();
+		$('.btnNext').click(function(){
 			
+			const chk1 = $('input[name=chk1]').is(':checked');
+			const chk2 = $('input[name=chk2]').is(':checked');
 			
-			if(!chk1.checked) {
-				alert('이용약관에 동의하셔야 합니다.');
-				return;
-			}else if(!chk2.checked) {
-				alert('개인정보 취급방침에 동의하셔야 합니다.');
-				return;
-			}else{
-				location.href='/Farmstory2/user/register.do';
+			if(!chk1){
+				alert('사이트 이용약관에 동의체크 하시기 바랍니다.');
+				return false;
 			}
+			
+			if(!chk2){
+				alert('개인정보 취급방침 약관에 동의체크 하시기 바랍니다.');
+				return false;
+			}	
+			
+			return true;
 		});
-		
-	}
+	});
+
 </script>
 
 <div id="user">
@@ -46,8 +46,14 @@
         </table>
         
         <div>
-            <a href="/Farmstory2/user/login.do" class="btn btnCancel">취소</a>
-            <a href="#" class="btn btnNext">다음</a>
+            <!-- 
+				ctxPath
+				 - Context Root 경로 전역변수 
+				 - _header.jsp 5줄 참고
+			-->
+            <a href="${ctxPath}/user/login.do" class="btnCancel">취소</a>
+            <a href="${ctxPath}/user/register.do" class="btnNext">다음</a>
+        </div>
         </div>
 
     </section>

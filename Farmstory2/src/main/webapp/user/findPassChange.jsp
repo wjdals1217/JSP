@@ -2,7 +2,7 @@
 <%@ include file="../_header.jsp" %>
         <main id="user">
             <section class="find findPassChange">
-                <form id="formFindPassChange" action="/Farmstory2/user/findPassChange.do" method="post">
+                <form id="formFindPassChange" action="${ctxPath}/user/findPassChange.do" method="post">
                 	<input type="hidden" name="uid" value="${sessionScope.uid}"/>
                     <table border="0">
                         <caption>비밀번호 변경</caption>                        
@@ -32,7 +32,7 @@
                 </p>
 
                 <div>
-                    <a href="/Farmstory2/user/login.do" class="btn btnCancel">취소</a>
+                    <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
                     <a href="#" id="btnPassChange" class="btn btnNext">완료</a>
                 </div>
             </section>

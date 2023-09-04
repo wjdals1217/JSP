@@ -65,20 +65,83 @@ public class UserDAO extends DBHelper{
 				user.setRegDate(rs.getString(12));
 				user.setLeaveDate(rs.getString(13));
 			}
+			close();
 		} catch (Exception e) {
 			logger.error("selectUsers() error : "+e.getMessage());
 		}
 		return user;
 	}
+	
+	public int selectCountUid(String uid) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectCountUid() error : "+e.getMessage());
+		}
+		return result;
+	}
+	public int selectCountNick(String nick) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_NICK);
+			psmt.setString(1, nick);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectCountNick() error : "+e.getMessage());
+		}
+		return result;
+	}
+	public int selectCountEmail(String email) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_EMAIL);
+			psmt.setString(1, email);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectCountEmail() error : "+e.getMessage());
+		}
+		return result;
+	}
+	public int selectCountHp(String hp) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_HP);
+			psmt.setString(1, hp);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectCountHp() error : "+e.getMessage());
+		}
+		return result;
+	}
 	public List<UserDTO> selectUsers() {
-		
-		
 		return null;
 	}
 	public void updateUser(UserDTO dto) {
 		
 	}
 	public void deleteUser(String uid) {
-		
 	}
 }

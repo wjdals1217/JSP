@@ -2,7 +2,7 @@
 <%@ include file="../_header.jsp" %>
         <main id="user">
             <section class="find findPass">
-                <form id="formFindPass" action="/Farmstory2/user/findPass.do" method="post">
+                <form id="formFindPass" action="${ctxPath}/user/findPass.do" method="post">
 					<input type="hidden" name="type" value="FIND_PASS"/>                
                     <table border="0">
                         <caption>비밀번호 찾기</caption>                        
@@ -34,7 +34,7 @@
                 </p>
 
                 <div>
-                    <a href="/Farmstory2/user/login.do" class="btn btnCancel">취소</a>
+                    <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
                     <a href="#" class="btn btnNext">다음</a>
                 </div>
             </section>

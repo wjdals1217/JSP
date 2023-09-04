@@ -2,7 +2,7 @@
 <%@ include file="../_header.jsp" %>
         <main id="user">
             <section class="find findId">
-                <form id="formFindId" action="/Farmstory/user/findIdResult.do" method="post">
+                <form id="formFindId" action="${ctxPath}/user/findIdResult.do" method="post">
                 	<input type="hidden" name="type" value="FIND_ID"/>
                     <table border="0">
                         <caption>아이디 찾기</caption>
@@ -33,7 +33,7 @@
                 </p>
 
                 <div>
-                    <a href="Farmstory2/user/login.do" class="btn btnCancel">취소</a>
+                    <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
                     <a href="#" class="btn btnNext">다음</a>
                 </div>
             </section>

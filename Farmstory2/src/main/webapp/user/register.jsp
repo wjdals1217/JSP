@@ -1,42 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/Farmstory2/js/zipcode.js"></script>
-<script>
-	// 사용자 중복 체크
-	$(function(){
-		//아이디 중복체크
-		// 아이디 유효성 검사
-		$('#btnCheckUid').click(function(){
-			const uid = $('input[name=uid]').val();
-			
-			if(!uid.match(reUid)){
-				$('.uidResult').css('color', 'red').text('유효한 아이디가 아닙니다.');
-				isUidOk = false;
-				return; // 종료
-			}
-			
-			const jsonData = {
-					"uid":uid
-			};
-			
-			$.ajax({
-				url:'/Farmstory2/user/checkUid.do',
-				type: 'GET',
-				data: jsonData,
-				dataType: 'json',
-				success:function(data){
-					console.log(data);
-				}
-			});
-			
-		});
-	});
-	
-</script>
+<!-- 
+	ctxPath
+	 - Context Root 경로 전역변수 
+	 - _header.jsp 5줄 참고
+-->
+<script src="${ctxPath}/js/zipcode.js"></script>
+<script src="${ctxPath}/js/validation.js"></script>
+<script src="${ctxPath}/js/checkUser.js"></script>
         <div id="user">
 		    <section class="register">
-		        <form id="formUser" action="/Farmstory2/user/register.do" method="post">
+		        <form id="formUser" action="${ctxPath}/user/register.do" method="post">
 		        	<input type="hidden" name="type" value="REGISTER"/>
 		            <table border="1">
 		                <caption>사이트 이용정보 입력</caption>
@@ -44,7 +19,7 @@
 		                    <td>아이디</td>
 		                    <td>
 		                        <input type="text" name="uid" placeholder="아이디 입력"/>
-		                        <button type="button" id="btnCheckUid"><img src="/Farmstory2/user/images/chk_id.gif" alt="중복확인"/></button>
+		                        <button type="button" id="btnCheckUid"><img src="${ctxPath}/user/images/chk_id.gif" alt="중복확인"/></button>
 		                        <span class="uidResult"></span>
 		                    </td>
 		                </tr>
@@ -75,7 +50,7 @@
 		                    <td>
 		                        <p class="nickInfo">공백없는 한글, 영문, 숫자 입력</p>
 		                        <input type="text" name="nick" placeholder="별명 입력"/>
-		                        <button type="button" id="btnCheckNick"><img src="/Farmstory2/user/images/chk_id.gif" alt="중복확인"/></button>
+		                        <button type="button" id="btnCheckNick"><img src="${ctxPath}/user/images/chk_id.gif" alt="중복확인"/></button>
 		                        <span class="nickResult"></span>
 		                    </td>
 		                </tr>
@@ -83,11 +58,11 @@
 		                    <td>이메일</td>
 		                    <td>
 		                        <input type="email" name="email" placeholder="이메일 입력"/>
-		                        <button type="button" id="btnEmailCode"><img src="/Farmstory2/user/images/chk_auth.gif" alt="인증번호 받기"/></button>
-		                        <span class="resultEmail"></span>
+		                        <button type="button" id="btnEmailCode"><img src="${ctxPath}/user/images/chk_auth.gif" alt="인증번호 받기"/></button>
+		                        <span id="resultEmail" class="resultEmail"></span>
 		                        <div class="auth">
 		                            <input type="text" name="auth" placeholder="인증번호 입력"/>
-		                            <button type="button" id="btnEmailAuth"><img src="/Farmstory2/user/images/chk_confirm.gif" alt="확인"/></button>
+		                            <button type="button" id="btnEmailAuth"><img src="${ctxPath}/user/images/chk_confirm.gif" alt="확인"/></button>
 		                            
 		                        </div>
 		                    </td>
@@ -96,21 +71,21 @@
 		                    <td>휴대폰</td>
 		                    <td>
 		                    	<input type="text" name="hp" placeholder="휴대폰 입력"/>
-		                    	<span class="hpResult"></span>
+		                    	<span id="hpResult" class="hpResult"></span>
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td>주소</td>
 		                    <td>
 		                        <input type="text" name="zip" placeholder="우편번호" readonly/>
-		                        <button type="button" class="btnZip" onclick="zipcode()"><img src="/Farmstory2/user/images/chk_post.gif" alt="우편번호찾기"/></button>
+		                        <button type="button" class="btnZip" onclick="zipcode()"><img src="${ctxPath}/user/images/chk_post.gif" alt="우편번호찾기"/></button>
 		                        <input type="text" name="addr1" placeholder="주소 검색" readonly/>
 		                        <input type="text" name="addr2" placeholder="상세주소 입력"/>
 		                    </td>
 		                </tr>
 		            </table>
 		            <div>
-		                <a href="/Farmstory2/user/login.do" class="btn btnCancel">취소</a>
+		                <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
 		                <input type="submit" value="회원가입" class="btn btnNext"/>
 		            </div>
 		        </form>
