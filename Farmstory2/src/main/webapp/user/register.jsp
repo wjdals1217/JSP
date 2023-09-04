@@ -5,7 +5,32 @@
 <script>
 	// 사용자 중복 체크
 	$(function(){
-		
+		//아이디 중복체크
+		// 아이디 유효성 검사
+		$('#btnCheckUid').click(function(){
+			const uid = $('input[name=uid]').val();
+			
+			if(!uid.match(reUid)){
+				$('.uidResult').css('color', 'red').text('유효한 아이디가 아닙니다.');
+				isUidOk = false;
+				return; // 종료
+			}
+			
+			const jsonData = {
+					"uid":uid
+			};
+			
+			$.ajax({
+				url:'/Farmstory2/user/checkUid.do',
+				type: 'GET',
+				data: jsonData,
+				dataType: 'json',
+				success:function(data){
+					console.log(data);
+				}
+			});
+			
+		});
 	});
 	
 </script>
