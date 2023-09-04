@@ -1,5 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/Farmstory2/js/zipcode.js"></script>
+<script>
+	// 사용자 중복 체크
+	$(function(){
+		
+	});
+	
+</script>
         <div id="user">
 		    <section class="register">
 		        <form id="formUser" action="/Farmstory2/user/register.do" method="post">
@@ -77,7 +86,7 @@
 		            </table>
 		            <div>
 		                <a href="/Farmstory2/user/login.do" class="btn btnCancel">취소</a>
-		                <input type="submit" value="회원가입" class="btn btnRegister"/>
+		                <input type="submit" value="회원가입" class="btn btnNext"/>
 		            </div>
 		        </form>
 		    </section>

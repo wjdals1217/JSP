@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/index.do")
+@WebServlet(value = {"", "/index.do"})
 public class IndexController extends HttpServlet{
 
 	private static final long serialVersionUID = -3080800980145079760L;

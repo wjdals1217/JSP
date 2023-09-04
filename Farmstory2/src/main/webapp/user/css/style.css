@@ -58,31 +58,31 @@
 }
 
 /* 약관 */
-.terms {
+.userTerms {
     width: 600px;
     height: auto;            
     margin: 60px auto;
 }
-.terms > table {
+.userTerms > table {
     width: 100%;
     height: auto;
     border-collapse: collapse;
     border-spacing: 0;
     border-top: 2px solid #111;
 }
-.terms > table > caption {
+.userTerms > table > caption {
     text-align: left;
     font-weight: bold;
     padding: 10px 0;
     box-sizing: border-box;
 }
-.terms > table tr {}
-.terms > table td {
+.userTerms > table tr {}
+.userTerms > table td {
     padding: 6px;
     border: 1px solid #e9e9e9;
     box-sizing: border-box;
 }
-.terms > table td > textarea {
+.userTerms > table td > textarea {
     width: 100%;
     height: 200px;
     resize: none;
@@ -91,13 +91,13 @@
     padding: 2px;
     box-sizing: border-box;
 }
-.terms > table td > label {float: right;}
-.terms > table td > label > input[type=checkbox] {}
-.terms > table p {
+.userTerms > table td > label {float: right;}
+.userTerms > table td > label > input[type=checkbox] {}
+.userTerms > table p {
     float: right;
 }
 
-.terms > div {
+.userTerms > div {
     float: right;
     margin-top: 10px;
 }
@@ -160,6 +160,7 @@
 .register > form > div {
     float: right;
 }
+
 /* 버튼 공통 */
 .btnNext   { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #e9e9e9; color: #111;}
 .btnSubmit { display: inline-block; padding: 7px; border: 1px solid #bebebe; background: #e9e9e9; color: #111;}
