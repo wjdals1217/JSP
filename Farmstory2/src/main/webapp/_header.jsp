@@ -29,7 +29,7 @@
 <body>
     <div id="container">
         <header>
-            <a href="${ctxPath}" class="logo"><img src="${ctxPath}/images/logo.png" alt="로고"/></a>
+            <a href="${ctxPath}/index.do" class="logo"><img src="${ctxPath}/images/logo.png" alt="로고"/></a>
             <p>
                 <c:if test="${empty sessUser}">
                 	<a href="${ctxPath}/index.do">HOME |</a>

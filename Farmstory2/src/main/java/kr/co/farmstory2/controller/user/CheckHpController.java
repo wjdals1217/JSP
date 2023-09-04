@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 
 import kr.co.famrstory2.service.UserService;
 
-@WebServlet("/user/checkEmail.do")
+@WebServlet("/user/checkHp.do")
 public class CheckHpController extends HttpServlet {
 
 	private static final long serialVersionUID = 5158550315155804702L;
