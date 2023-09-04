@@ -4,39 +4,74 @@
 <script>
 	$(function(){
 		
+		let comment = '';
+		
+		// 댓글 수정
+		$('.modify').click(function(e){
+			e.preventDefault();
+			const txt = $(this).text();
+			
+			if(txt == '수정'){
+				comment = $(this).text();
+				
+				// 수정모드 전환
+				$(this).parent().prev().addClass('modi');
+				$(this).parent().prev().attr('readonly', false);
+				$(this).parent().prev().focus();
+				$(this).text('수정완료');
+				$(this).prev().show();
+			}else{
+				// 수정완료 클릭
+				if(confirm('정말 수정하시겠습니까?')) {
+					// 수정 데이터 전송
+					$(this).parent().parent().submit();
+					
+				}else{
+					$(this).parent().prev().val(comment);
+				}
+				
+				// 수정모드 해제
+				$(this).parent().prev().removeClass('modi');
+				$(this).parent().prev().attr('readonly', true);
+				$(this).text('수정');
+				$(this).prev().hide();
+			}
+		});
+		
 		// 댓글 삭제(동적 생성 이벤트 구현)(.on(이벤트, 선택자, 함수))
 		$(document).on( 'click', '.remove', function(e){
 			e.preventDefault();
 			
-			//alert('클릭!');
-			const no = $(this).data('no');
-			const article = $(this).parent().parent();
-			const parent = $(this).data('parent');
-			console.log('no : '+no);
-			
-			const jsonData ={
-					"kind":"REMOVE",
-					"no":no,
-					"parent":parent
-			};
-			console.log("jsonData"+jsonData);
-			
-			$.ajax({
-				url : '/Jboard2/comment.do',
-				type:'GET',
-				data : jsonData,
-				dataType: 'json',
-				success:function(data){
-					
-					if(data.result > 0) {
-						alert('댓글이 삭제 되었습니다.');
+			if(confirm('정말 삭제하시겠습니까?')){
+				//alert('클릭!');
+				const no = $(this).data('no');
+				const article = $(this).parent().parent();
+				const parent = $(this).data('parent');
+				console.log('no : '+no);
+				
+				const jsonData ={
+						"kind":"REMOVE",
+						"no":no,
+						"parent":parent
+				};
+				console.log("jsonData"+jsonData);
+				
+				$.ajax({
+					url : '/Jboard2/comment.do',
+					type:'GET',
+					data : jsonData,
+					dataType: 'json',
+					success:function(data){
 						
-						// 화면 처리
-						article.remove();
+						if(data.result > 0) {
+							alert('댓글이 삭제 되었습니다.');
+							
+							// 화면 처리
+							article.remove();
+						}
 					}
-				}
-			});
-			
+				});
+			} // 확인버튼을 눌렀을 때
 		});
 		
 		//댓글쓰기
@@ -137,15 +172,18 @@
 
                     <c:forEach var="comment" items="${comments}">
 			            <article>
+			            <form action="/Jboard2/comment.do">
 			                <span class="nick">${comment.nick}</span>
 			                <span class="date">${comment.rdate}</span>
-			                <p class="content">${comment.content}</p> 
+			                <textarea class="content" readonly>${comment.content}</textarea> 
 							<c:if test="${sessUser.uid eq comment.writer }">
 			                <div>			                
 			                	<a href="#" class="remove" data-no ="${comment.no}" data-parent="${comment.parent}">삭제</a> <!-- data- : 사용자 정의 속성 -->
+			                    <a href="#" class="can">취소</a>
 			                    <a href="#" class="modify">수정</a>
 			                </div>
 			                </c:if>
+			                </form>
 			            </article>
 					</c:forEach>
 					<c:if test="${comments.size() == 0}">
