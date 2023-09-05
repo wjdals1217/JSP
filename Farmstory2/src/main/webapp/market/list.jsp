@@ -15,6 +15,7 @@
                     <nav>
                         <img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기"/>
                         <p>
+                        	<img src="../images/sub_page_nav_ico.gif" alt=""/>
                             HOME > 장보기 > <em>장보기</em>
                         </p>
                     </nav>

@@ -13,6 +13,7 @@ public class ArticleDTO {
 	private String regip;
 	private String rdate;
 	private String nick;
+	private FileDTO fileDTO;
 	
 	public int getNo() {
 		return no;
@@ -81,8 +82,11 @@ public class ArticleDTO {
 	public void setRegip(String regip) {
 		this.regip = regip;
 	}
-	public String getRdate() {
+	public String getFullRdate() {
 		return rdate;
+	}
+	public String getRdate() {
+		return rdate.substring(2, 10);
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
@@ -92,6 +96,12 @@ public class ArticleDTO {
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	public FileDTO getFileDTO() {
+		return fileDTO;
+	}
+	public void setFileDTO(FileDTO fileDTO) {
+		this.fileDTO = fileDTO;
 	}
 	
 }

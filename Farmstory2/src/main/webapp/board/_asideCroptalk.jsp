@@ -19,6 +19,7 @@
                 		<nav>
                         	<img src="../images/sub_nav_tit_cate3_tit1.png" alt="농작물가꾸기"/>
                         	<p>
+                        		<img src="../images/sub_page_nav_ico.gif" alt=""/>
                            		 HOME > 농작물이야기 > <em>농작물이야기</em>
                         	</p>
                     	</nav>
@@ -27,6 +28,7 @@
                 		<nav>
                         	<img src="../images/sub_nav_tit_cate3_tit2.png" alt="텃밭가꾸기"/>
                         	<p>
+                        		<img src="../images/sub_page_nav_ico.gif" alt=""/>
                            		 HOME > 농작물이야기 > <em>텃밭가꾸기</em>
                         	</p>
                     	</nav>
@@ -35,6 +37,7 @@
                 		<nav>
                         	<img src="../images/sub_nav_tit_cate3_tit3.png" alt="귀농학교"/>
                         	<p>
+                        		<img src="../images/sub_page_nav_ico.gif" alt=""/>
                            		 HOME > 농작물이야기 > <em>귀농학교</em>
                         	</p>
                     	</nav>

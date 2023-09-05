@@ -16,6 +16,7 @@
                     <nav>
                         <img src="../images/sub_nav_tit_cate1_tit2.png" alt="찾아오시는길"/>
                         <p>
+                        	<img src="../images/sub_page_nav_ico.gif" alt=""/>
                             HOME > 팜스토리소개 > <em>찾아오시는길</em>
                         </p>
                     </nav>

@@ -701,10 +701,41 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* 글목록 */
+
 .list {
     position: relative;
     width: 720px;
     margin: 60px auto;
+}
+#board > .list {
+    position: relative;
+    width: 720px;
+    height: auto;            
+    margin: 60px auto;    
+}
+
+#board > .list > form {
+    float: right;
+    margin-bottom: 8px;
+}
+
+#board > .list > h3 {
+	position: absolute;
+	left: 0;
+	top: 17px;
+}
+
+#board > .list > form > input[name=search]{
+    width: 200px;
+    height: 26px;
+    text-indent: 6px;
+    border: 1px solid #d7d7d7;
+}
+#board > .list > form > input[type=submit]{
+    border: 1px solid #d7d7d7;
+    background: #f2f2f2; 
+    color: #111;
+    padding: 6px;
 }
 
 .list > article > p {
@@ -722,7 +753,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .list table th {
-    padding: 12px;
+    padding: 8px;
     border-top: 1px solid #d1dee2;
     border-bottom: 1px solid #d1dee2;
     background: #e5ecef;

@@ -16,6 +16,7 @@
                     <nav>
                         <img src="../images/sub_nav_tit_cate1_tit1.png" alt="인사말"/>
                         <p>
+                        	<img src="../images/sub_page_nav_ico.gif" alt=""/>
                             HOME > 팜스토리소개 > <em>인사말</em>
                         </p>
                     </nav>

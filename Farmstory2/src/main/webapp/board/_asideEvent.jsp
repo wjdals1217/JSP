@@ -17,6 +17,7 @@
                 		<nav>
                         	<img src="../images/sub_nav_tit_cate4_tit1.png" alt="이벤트"/>
                         	<p>
+                        		<img src="../images/sub_page_nav_ico.gif" alt=""/>
                            		 HOME > 이벤트 > <em>이벤트</em>
                         	</p>
                     	</nav>
