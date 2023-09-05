@@ -7,6 +7,10 @@
 ul, ol {list-style: none;}
 a {text-decoration: none; color: #111;}
 
+input:focus, textarea:focus {
+	outline: none;
+}
+
 #container {
     width: 980px;
     height: auto;

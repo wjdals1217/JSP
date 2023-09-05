@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.famrstory2.dto.UserDTO;
-import kr.co.famrstory2.service.UserService;
 import kr.co.farmstory2.dao.UserDAO;
+import kr.co.farmstory2.dto.UserDTO;
+import kr.co.farmstory2.service.UserService;
 
 
 @WebServlet("/user/register.do")

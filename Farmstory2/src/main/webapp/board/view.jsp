@@ -25,7 +25,7 @@
 			    <div>
 			        <a href="#" class="btnDelete">삭제</a>
 			        <a href="#" class="btnModify">수정</a>
-			        <a href="#" class="btnList">목록</a>
+			        <a href="${ctxPath}/board/list.do?group=${group}&cate=${cate}" class="btnList">목록</a>
 			    </div>
 			    
 			    <!-- 댓글리스트 -->

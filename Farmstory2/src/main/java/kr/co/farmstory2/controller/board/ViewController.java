@@ -1,7 +1,6 @@
-package kr.co.farmstory2.controller.user;
+package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.farmstory2.dto.TermsDTO;
-import kr.co.farmstory2.service.TermsService;
+@WebServlet("/board/view.do")
+public class ViewController extends HttpServlet{
 
-@WebServlet("/user/terms.do")
-public class TermsController extends HttpServlet{
-
-	private static final long serialVersionUID = 1368971640139096854L;
+	private static final long serialVersionUID = 3095107901679827784L;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private TermsService service = new TermsService();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String group = req.getParameter("group"); 
+		String cate = req.getParameter("cate");
+		logger.debug("group : "+group);
+		logger.debug("cate : "+cate);
 		
-		TermsDTO terms = service.selectTerms();
-		logger.debug("terms"+terms);
+		req.setAttribute("group", group);
+		req.setAttribute("cate", cate);
 		
-		req.setAttribute("terms", terms);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/terms.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.famrstory2.db.DBHelper;
-import kr.co.famrstory2.db.SQL;
-import kr.co.famrstory2.dto.TermsDTO;
+import kr.co.farmstory2.db.DBHelper;
+import kr.co.farmstory2.db.SQL;
+import kr.co.farmstory2.dto.TermsDTO;
 
 public class TermsDAO extends DBHelper{
 	

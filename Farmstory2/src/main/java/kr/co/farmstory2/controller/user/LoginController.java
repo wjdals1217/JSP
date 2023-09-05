@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.famrstory2.dto.UserDTO;
-import kr.co.famrstory2.service.UserService;
+import kr.co.farmstory2.dto.UserDTO;
+import kr.co.farmstory2.service.UserService;
 
 @WebServlet("/user/login.do")
 public class LoginController extends HttpServlet{
@@ -26,6 +26,11 @@ public class LoginController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String success = req.getParameter("success");
+		logger.debug("success : "+success);
+		
+		req.setAttribute("success", success);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
 		dispatcher.forward(req, resp);				

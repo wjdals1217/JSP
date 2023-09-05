@@ -4,7 +4,10 @@
 			<section class="write">
 			    <h3>글쓰기</h3>
 			    <article>
-			        <form action="#" method="post">
+			        <form action="${ctxPath}/board/write.do" method="post" enctype="multipart/form-data">
+			        <input type="hidden" name="group" value="${group}"/>
+			        <input type="hidden" name="cate" value="${cate}"/>
+			        <input type="hidden" name="writer" value="${sessUser.uid}"/>
 			            <table>
 			                <tr>
 			                    <td>제목</td>
@@ -22,7 +25,7 @@
 			                </tr>
 			            </table>
 			            <div>
-			                <a href="./list.do?group=${group}&cate=${cate}" class="btnCancel">취소</a>
+			                <a href="${ctxPath}/board/list.do?group=${group}&cate=${cate}" class="btnCancel">취소</a>
 			                <input type="submit"  class="btnWrite" value="작성완료">
 			            </div>
 			        </form>

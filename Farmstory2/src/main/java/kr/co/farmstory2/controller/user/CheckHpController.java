@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 
-import kr.co.famrstory2.service.UserService;
+import kr.co.farmstory2.service.UserService;
 
 @WebServlet("/user/checkHp.do")
 public class CheckHpController extends HttpServlet {

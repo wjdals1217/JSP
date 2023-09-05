@@ -29,6 +29,28 @@
  	</web-resource-collection>
  </security-constraint>
  
+ <!-- 로그인 여부 체크 필터 등록 -->
+  <filter>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<filter-class>kr.co.farmstory2.filter.CheckLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/board/write.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/board/view.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/board/modify.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/board/delete.do</url-pattern>
+  </filter-mapping>
+ 
  <!-- 인코딩 필터 등록 -->
  <filter>
  	<filter-name>SetCharacterEncodingFilter</filter-name>

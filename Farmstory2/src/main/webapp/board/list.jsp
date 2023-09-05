@@ -19,7 +19,7 @@
 			            </tr>
 			            <tr>
 			                <td>1</td>
-			                <td><a href="./view.do?group=${group}&cate=${cate}">제목입니다.</a>&nbsp;[3]</td>
+			                <td><a href="${ctxPath}/board/view.do?group=${group}&cate=${cate}">제목입니다.</a>&nbsp;[3]</td>
 			                <td>길동이</td>
 			                <td>23-09-04</td>
 			                <td>12</td>
@@ -35,7 +35,7 @@
 		        </div>
 			
 			    <!-- 글쓰기 버튼 -->
-			    <a href="./write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
+			    <a href="${ctxPath}/board/write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
 			</section>
 		</div>
 			<!-- 내용 끝 -->
