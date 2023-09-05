@@ -79,7 +79,7 @@ public class ArticleService {
 		String path = getFilePath(req);
 		
 		int i = oName.lastIndexOf(".");
-		String ext = oName.substring(i); // 확장자명(. 뒤 부터 마지막 까지)
+		String ext = oName.substring(i); // 확장자명(.부터 마지막 까지)
 		String uuid = UUID.randomUUID().toString();
 		String sName = uuid + ext;
 		
