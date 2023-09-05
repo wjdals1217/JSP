@@ -41,7 +41,7 @@ public class ListController extends HttpServlet{
 		logger.debug("search : "+search);
 		
 		// 현재 페이지 계산
-		int currentPage = service.currentPage(pg);
+		int currentPage = service.getCurrentPage(pg);
 		
 		// Limit 시작값 계산
 		int start = service.getStartNum(currentPage);

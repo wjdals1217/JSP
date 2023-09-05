@@ -141,7 +141,7 @@ public class ArticleService {
 	}
 	
 	// 현재 페이지 계산 
-	public int currentPage(String pg) {
+	public int getCurrentPage(String pg) {
 		int currentPage = 1;
 		if(pg != null) {
 			currentPage = Integer.parseInt(pg);
