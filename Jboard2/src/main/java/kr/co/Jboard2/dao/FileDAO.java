@@ -1,6 +1,7 @@
 package kr.co.Jboard2.dao;
 
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -55,33 +56,29 @@ public class FileDAO extends DBHelper{
 	public void updateFile(FileDTO dto) {
 		
 	}
-	public List<FileDTO> deleteFile(String ano) {
-		List<FileDTO> files = null;
+	public List<String> deleteFile(String ano) {
+		List<String> snames = new ArrayList<String>();
+		
 		try {
-			conn = getConnection();
-			conn.setAutoCommit(false);
-			PreparedStatement psmt2 = conn.prepareStatement(SQL.SELECT_FILES_BY_ANO);
-			psmt = conn.prepareStatement(SQL.DELETE_FILE);
+			conn = getConnection(); 
+			psmt = conn.prepareStatement(SQL.SELECT_FILE_SNAMES);
 			psmt.setString(1, ano);
-			psmt2.setString(1, ano);
-			rs = psmt2.executeQuery();
-			psmt.executeUpdate();
-			conn.commit();
+			
+			psmt1 = conn.prepareStatement(SQL.DELETE_FILE);
+			psmt1.setString(1, ano);
+			
+			rs = psmt.executeQuery();
+			psmt1.executeUpdate();
+			
 			while(rs.next()) {
-				FileDTO dto = new FileDTO();
-				dto.setFno(rs.getInt(1));
-				dto.setAno(rs.getInt(2));
-				dto.setOriName(rs.getString(3));
-				dto.setNewName(rs.getString(4));
-				dto.setDownload(rs.getInt(5));
-				dto.setRdate(rs.getString(6));
-				files.add(dto);
+				snames.add(rs.getString(1));
 			}
-			psmt2.close();
+			
 			close();
-		} catch (Exception e) {
-			logger.error("deleteFile() error : "+e.getMessage());
+		}catch (Exception e) {
+			logger.error("deleteFile - " + e.getMessage());
 		}
-		return files;
+		
+		return snames;
 	}
 }

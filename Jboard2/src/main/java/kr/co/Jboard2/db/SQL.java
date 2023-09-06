@@ -129,5 +129,5 @@ public class SQL {
 		
 		public final static String DELETE_FILE = "DELETE FROM `File` WHERE `ano`=?";
 		
-		
+		public final static String SELECT_FILE_SNAMES = "SELECT `sfile` FROM `File` WHERE `ano`=?";
 }
