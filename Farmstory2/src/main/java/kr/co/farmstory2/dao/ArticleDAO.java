@@ -82,6 +82,44 @@ public class ArticleDAO extends DBHelper{
 			
 			return dto;
 		}
+	public ArticleDTO selectArticleToModify(String no) {
+		ArticleDTO dto = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ARTICLE);
+			psmt.setString(1, no);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto = new ArticleDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setParent(rs.getInt(2));
+				dto.setComment(rs.getInt(3));
+				dto.setCate(rs.getString(4));
+				dto.setTitle(rs.getString(5));
+				dto.setContent(rs.getString(6));
+				dto.setFile(rs.getInt(7));
+				dto.setHit(rs.getInt(8));
+				dto.setWriter(rs.getString(9));
+				dto.setRegip(rs.getString(10));
+				dto.setRdate(rs.getString(11));
+				// 파일정보
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setFno(rs.getInt(12));
+				fileDTO.setAno(rs.getInt(13));
+				fileDTO.setOriName(rs.getString(14));
+				fileDTO.setNewName(rs.getString(15));
+				fileDTO.setDownload(rs.getInt(16));
+				fileDTO.setRdate(rs.getString(17));
+				
+				// dto를 return하기 때문에 dto에 FileDTO 객체를 넣어줘야 함
+				dto.setFileDTO(fileDTO);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectArticleToModify() error : "+e.getMessage());
+		}
+		return dto;
+	}
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
 		try {
@@ -217,7 +255,20 @@ public class ArticleDAO extends DBHelper{
 		
 		return comments;
 	}
-	public void updateArticle(ArticleDTO dto) {}
+	public int updateArticle(ArticleDTO dto) {
+		int no = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setInt(3, dto.getFile());
+			psmt.setInt(4, dto.getNo());
+		} catch (Exception e) {
+			logger.error("updateArticle() error : "+ e.getMessage());
+		}
+		return no;
+	}
 	public void deleteArticle(String no) {}
 
 	public void updateAticleForCommentPlus(String no) {
@@ -228,7 +279,7 @@ public class ArticleDAO extends DBHelper{
 			psmt.executeUpdate();
 			close();
 		}catch (Exception e) {
-			e.printStackTrace();
+			logger.error("updateAticleForCommentPlus error : "+e.getMessage());
 		}
 	}
 	
@@ -240,7 +291,7 @@ public class ArticleDAO extends DBHelper{
 			psmt.executeUpdate();
 			close();
 		}catch (Exception e) {
-			e.printStackTrace();
+			logger.error("updateAticleForCommentMinus error : "+e.getMessage());
 		}
 	}
 

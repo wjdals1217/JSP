@@ -30,6 +30,7 @@ public class CommentController extends HttpServlet{
 
 		String type    = req.getParameter("type");
 		String no      = req.getParameter("no");
+		String parent      = req.getParameter("parent");
 		String content = req.getParameter("content");
 		
 		logger.debug("컨트롤러 type : " + type);
@@ -39,6 +40,7 @@ public class CommentController extends HttpServlet{
 		switch(type) {
 			case "REMOVE":
 				result = service.deleteComment(no);
+				service.updateAticleForCommentMinus(parent);
 				break;
 			case "MODIFY":
 				result = service.updateComment(no, content);
@@ -77,6 +79,8 @@ public class CommentController extends HttpServlet{
 		
 		// 댓글 입력 후 입력한 댓글 조회(왜 이렇게 처리 했는지 생각해봅시다.)
 		ArticleDTO comment = service.insertComment(dto);
+		
+		service.updateAticleForCommentPlus(parent);
 		
 		logger.debug("코멘트 컨트롤러 dto:  "+ comment);
 		logger.info("코멘트 컨트롤러 dto:  "+ comment);

@@ -65,6 +65,7 @@ public class SQL {
 	
 	public static final String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(*) FROM `Article` "
 																											+ "WHERE `parent`= 0 AND `cate`=? AND `title` LIKE ?";
+	public static final String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=?, `file`=? WHERE `no`=?";
 	
 	// Comment
 	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET "

@@ -12,6 +12,7 @@
 		const commentURL = "/Farmstory2/board/comment.do";	
 		const formComment = document.getElementById('formComment');
 		const commentList = document.getElementsByClassName('commentList')[0];
+		const empty = document.getElementsByClassName('empty')[0];
 		
 		////////////////////////////////////////////////////////////////////////
 		// 댓글입력(최신 Javascript(ES6) 문법 적용)
@@ -63,7 +64,8 @@
 				
 				commentList.insertAdjacentHTML('beforeend', article);
 				alert('댓글이 등록 되었습니다.');
-				
+				document.querySelector('.commentForm textarea[name=content]').innerText='';
+				empty.style.display='';
 			}else{
 				alert('댓글이 등록이 실패 했습니다.');
 			}
@@ -81,11 +83,13 @@
 				}
 				
 				const no = e.target.dataset['no'];
+				const parent = e.target.dataset['parent'];
 				//console.log('no : ' + no);
 				
 				const params = new URLSearchParams({
 					'type': 'REMOVE',
 					'no': no,
+					'parent':parent
 				});
 				
 				fetch(commentURL+'?'+params, {
@@ -240,8 +244,8 @@
 			    
 			    <div>
 			    	<c:if test="${sessUser.uid eq article.writer}">
-			    		<a href="#" class="btnDelete">삭제</a>
-			        	<a href="#" class="btnModify">수정</a>
+			    		<a href="${ctxPath}/board/delete.do" class="btnDelete">삭제</a>
+			        	<a href="${ctxPath}/board/modify.do?group=${group}&cate=${cate}&no=${article.no}" class="btnModify">수정</a>
 			    	</c:if>
 			        <a href="${ctxPath}/board/list.do?group=${group}&cate=${cate}" class="btnList">목록</a>
 			    </div>
@@ -256,9 +260,9 @@
 			                <span class="date">${comment.rdate}</span>
 			                <textarea readonly class="content" data-value="${comment.content}">${comment.content}</textarea>                        
 			                <div>
-			                    <a href="#" class="remove" data-no="${comment.no}">삭제</a>
+			                    <a href="#" class="remove" data-no="${comment.no}" data-parent="${comment.parent}">삭제</a>
 			                    <a href="#" class="cancel" data-no="${comment.no}">취소</a><!-- style.css 858라인 display:none 처리 -->
-			                    <a href="#" class="modify" data-no="${comment.no}">수정</a>			                    
+			                    <a href="#" class="modify" data-no="${comment.no} ">수정</a>			                    
 			                </div>
 			            </article>
 					</c:forEach>

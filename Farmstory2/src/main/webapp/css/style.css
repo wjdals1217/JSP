@@ -870,16 +870,12 @@ input[type=number]::-webkit-outer-spin-button {
     background: transparent;
 }
 
-.view > .commentList > article textarea.modi {
-	border: 1px solid #bbb;
-	background: white;	
-}
 
 .view > .commentList > article div {
     text-align: right;
 }
 
-.view > .commentList > article div > .can {
+.view > .commentList > article div > .cancel {
 	display: none;
 }
 
@@ -1127,4 +1123,5 @@ input[type=number]::-webkit-outer-spin-button {
 .btnList   { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 .btnAuth, .btnConfirm {display: inline-block; padding: 4px; border: 1px solid #bebebe; text-align: center;}
 .btnUpdatePass {padding: 5px; background: #2e658a; color:#fff; border: 1px solid #bebebe;}
+.btnfileDelete {padding: 2px; background: #2e658a; color:#fff;}
 .btnWithdraw {padding: 5px; background: #ed2f2f; color:#fff;}
