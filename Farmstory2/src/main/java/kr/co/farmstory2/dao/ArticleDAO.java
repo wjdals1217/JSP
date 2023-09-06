@@ -41,6 +41,47 @@ public class ArticleDAO extends DBHelper{
 		}
 		return no;
 	}
+	// 댓글을 등록하고 등록한 해당 댓글을 바로 조회해서 dto 출력
+		public ArticleDTO insertComment(ArticleDTO dto) {
+			
+			try {
+				conn = getConnection();
+				conn.setAutoCommit(false);
+				
+				stmt = conn.createStatement();
+				psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
+				psmt.setInt(1, dto.getParent());
+				psmt.setString(2, dto.getContent());
+				psmt.setString(3, dto.getWriter());
+				psmt.setString(4, dto.getRegip());			
+				psmt.executeUpdate();
+				rs = stmt.executeQuery(SQL.SELECT_COMMENT_LATEST);
+				conn.commit();
+				
+				if(rs.next()) {
+					dto.setNo(rs.getInt(1));
+					dto.setParent(rs.getInt(2));
+					dto.setComment(rs.getInt(3));
+					dto.setCate(rs.getString(4));
+					dto.setTitle(rs.getString(5));
+					dto.setContent(rs.getString(6));
+					dto.setFile(rs.getInt(7));
+					dto.setHit(rs.getInt(8));
+					dto.setWriter(rs.getString(9));
+					dto.setRegip(rs.getString(10));
+					dto.setRdateYYMMDD(rs.getString(11));
+					dto.setNick(rs.getString(12));
+				}
+		
+				close();
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			return dto;
+		}
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
 		try {
@@ -146,7 +187,90 @@ public class ArticleDAO extends DBHelper{
 		}
 		return articles;
 	}
+	public List<ArticleDTO> selectComments(String no) {
+		List<ArticleDTO> comments = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COMMENTS);
+			psmt.setString(1, no);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setParent(rs.getInt(2));
+				dto.setComment(rs.getInt(3));
+				dto.setCate(rs.getString(4));
+				dto.setTitle(rs.getString(5));
+				dto.setContent(rs.getString(6));
+				dto.setFile(rs.getInt(7));
+				dto.setHit(rs.getInt(8));
+				dto.setWriter(rs.getString(9));
+				dto.setRegip(rs.getString(10));
+				dto.setRdate(rs.getString(11));
+				dto.setNick(rs.getString(12));
+				comments.add(dto);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectComments() error: "+e.getMessage());;
+		}
+		
+		return comments;
+	}
 	public void updateArticle(ArticleDTO dto) {}
 	public void deleteArticle(String no) {}
 
+	public void updateAticleForCommentPlus(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT_PLUS);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateAticleForCommentMinus(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT_MINUS);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int updateComment(String no, String content) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			result = psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int deleteComment(String no) {
+		int result = 0;		
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

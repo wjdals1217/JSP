@@ -28,7 +28,7 @@
                     고객님의 정보와 일치하는 아이디 입니다.
                 </p>
 
-                <div>
+                <div class="btns">
                     <a href="${ctxPath}/user/login.do" class="btn btnCancel">로그인</a>
                     <a href="${ctxPath}/user/findPass.do" class="btn btnNext">비밀번호 찾기</a>
                 </div>

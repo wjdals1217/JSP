@@ -27,6 +27,9 @@ public class ArticleDTO {
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
+	}
 	public int getComment() {
 		return comment;
 	}
@@ -103,5 +106,16 @@ public class ArticleDTO {
 	public void setFileDTO(FileDTO fileDTO) {
 		this.fileDTO = fileDTO;
 	}
+	
+	public void setRdateYYMMDD(String rdate) {
+		this.rdate = rdate.substring(2, 10);
+	}
+	@Override
+	public String toString() {
+		return "ArticleDTO [no=" + no + ", parent=" + parent + ", comment=" + comment + ", cate=" + cate + ", title="
+				+ title + ", content=" + content + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip="
+				+ regip + ", rdate=" + rdate + ", nick=" + nick + ", fileDTO=" + fileDTO + "]";
+	}
+	
 	
 }

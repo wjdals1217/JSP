@@ -899,7 +899,7 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: right;
 }
 
-
+.commentList .nick {margin-right: 10px;}
 
 /* 글수정 */
 .modify {
@@ -1008,7 +1008,114 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 10px;
     text-align: right;
 }
+/* 아이디, 비밀번호 찾기 공통 */
+#user .btns {float: right;}
+#user > .find {
+    width: 600px;
+    height: auto;            
+    margin: 60px auto;
+    overflow: hidden;
+}
+#user > .find table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: 2px solid #111;
+}
+#user > .find table > caption {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
 
+#user > .find table tr > td {
+    padding: 12px;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+}
+
+#user > .find table tr > td:nth-child(1) {width: 120px;}
+#user > .find table tr > td:nth-child(2) {font-weight: bold;}
+
+#user > .find table input {
+    width: 162px;
+    height: 22px;
+    border: 1px solid #e4eaec;
+    background: #f7f7f7;
+    text-indent: 6px;
+}
+
+#user > .find table div {
+    margin-top: 4px;
+}
+/* 회원가입 */
+#user > .myInfo {
+    width: 600px;
+    height: auto;            
+    margin: 60px auto;
+    overflow: hidden;
+}
+#user > .myInfo table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: 2px solid #111;
+    margin-bottom: 10px;
+}
+#user > .myInfo table caption {
+    text-align: left;
+    padding: 10px 0;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+#user > .myInfo table tr > td {
+    padding: 6px 12px;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+}
+#user > .myInfo table tr > td:nth-child(1) {
+    width: 105px;
+    background: #f5f8f9;
+}
+
+#user > .myInfo table tr .nickInfo {margin-bottom: 6px;}
+#user > .myInfo table input {
+    width: 162px;
+    height: 22px;
+    border: 1px solid #e4eaec;
+    background: #f7f7f7;
+    text-indent: 6px;
+}
+
+#user > .myInfo table input[name=addr1] {
+    display: block;
+    width: 360px;
+    margin: 4px 0;
+}
+#user > .myInfo table input[name=addr2] {
+    display: block;
+    width: 360px;
+}
+#user > .myInfo table button {
+    border: none;
+    vertical-align: bottom;
+}
+
+#user > .myInfo > form > div {
+    float: right;
+    margin-top: 10px;
+}
+
+#user > .myInfo > form .auth {
+    display: none;
+    margin-top: 6px;
+}
+
+#user > .myInfo button {
+    cursor: pointer;
+}
 
 /* 버튼 공통 */
 .btnNext   { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #e9e9e9; color: #111;}
@@ -1018,3 +1125,6 @@ input[type=number]::-webkit-outer-spin-button {
 .btnDelete { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 .btnModify { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 .btnList   { display: inline-block; padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
+.btnAuth, .btnConfirm {display: inline-block; padding: 4px; border: 1px solid #bebebe; text-align: center;}
+.btnUpdatePass {padding: 5px; background: #2e658a; color:#fff; border: 1px solid #bebebe;}
+.btnWithdraw {padding: 5px; background: #ed2f2f; color:#fff;}

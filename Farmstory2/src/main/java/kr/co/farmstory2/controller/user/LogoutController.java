@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/logout.do")
+@WebServlet("/user/logout.do")
 public class LogoutController extends HttpServlet{
 
 	private static final long serialVersionUID = 5391947550167058223L;

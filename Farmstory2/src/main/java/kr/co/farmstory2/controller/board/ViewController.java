@@ -1,6 +1,7 @@
 package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,9 +34,12 @@ public class ViewController extends HttpServlet{
 
 		ArticleDTO article = service.selectArticle(no);
 		
+		List<ArticleDTO> comments = service.selectComments(no);
+		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
 		req.setAttribute("article", article);
+		req.setAttribute("comments", comments);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
 		dispatcher.forward(req, resp);

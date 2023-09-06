@@ -33,6 +33,10 @@ public class ArticleService {
 	public int insertArticle(ArticleDTO dto) {
 		return dao.insertArticle(dto);
 	}
+	public ArticleDTO insertComment(ArticleDTO dto) {
+		logger.debug(" insertComment dto 결과 : " + dto.getContent());
+		return dao.insertComment(dto);
+	}
 	public ArticleDTO selectArticle(String no) {
 		return dao.selectArticle(no);
 	}
@@ -42,13 +46,24 @@ public class ArticleService {
 	public List<ArticleDTO> selectArticles(String cate, String search, int start) {
 		return dao.selectArticles(cate, search, start);
 	}
+	public List<ArticleDTO> selectComments(String no) {
+		return dao.selectComments(no);
+	}
 	public void updateArticle(ArticleDTO dto) {
 		dao.updateArticle(dto);
+	}
+	public int updateComment(String no, String content) {
+		return dao.updateComment(no, content);
 	}
 	public void deleteArticle(String no) {
 		dao.deleteArticle(no);
 	}
+	public int deleteComment(String no) {
+		return dao.deleteComment(no);
+	}
 	
+	public void updateAticleForCommentPlus(String no) {}
+	public void updateAticleForCommentMinus(String no) {}
 	// 업로드 경로 구하기
 	public String getFilePath(HttpServletRequest req) {
 		ServletContext ctx = req.getServletContext();

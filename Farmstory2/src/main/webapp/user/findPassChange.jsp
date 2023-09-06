@@ -31,7 +31,7 @@
                     영문, 숫자, 특수문자를 사용하여 8자 이상 입력해 주세요.                    
                 </p>
 
-                <div>
+                <div class="btns">
                     <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
                     <a href="#" id="btnPassChange" class="btn btnNext">완료</a>
                 </div>

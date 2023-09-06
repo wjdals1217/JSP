@@ -32,7 +32,7 @@
                     인증번호를 입력 후 확인 버튼을 누르세요.
                 </p>
 
-                <div>
+                <div class="btns">
                     <a href="${ctxPath}/user/login.do" class="btn btnCancel">취소</a>
                     <a href="#" class="btn btnNext">다음</a>
                 </div>
