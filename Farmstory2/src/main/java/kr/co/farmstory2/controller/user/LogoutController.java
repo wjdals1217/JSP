@@ -24,6 +24,6 @@ public class LogoutController extends HttpServlet{
 		session.invalidate();
 		logger.info("sessUser 해제");
 		
-		resp.sendRedirect("/Farmstory2");
+		resp.sendRedirect("/Farmstory2/index.do?success=111");
 	}
 }

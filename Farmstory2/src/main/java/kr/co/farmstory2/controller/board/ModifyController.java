@@ -48,7 +48,9 @@ public class ModifyController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-MultipartRequest mr = articleService.uploadFile(req);
+		String path = articleService.getPath(req, "/upload");
+		
+		MultipartRequest mr = articleService.uploadFile(req, path);
 		
 		String group = mr.getParameter("group");
 		String cate = mr.getParameter("cate");
@@ -72,7 +74,7 @@ MultipartRequest mr = articleService.uploadFile(req);
 		logger.debug("no : "+no);
 		
 		if(oName != null) {
-			String sName = articleService.renameToFile(req, oName);
+			String sName = articleService.renameToFile(req, path, oName);
 			
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setAno(ano);
