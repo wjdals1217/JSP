@@ -39,11 +39,14 @@ public class ProductListController extends HttpServlet{
 		
 		List<ProductDTO> products = pService.selectProducts(start);
 		
+		logger.debug(products.toString());
+		
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
+		req.setAttribute("products", products);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/productList.jsp");
 		dispatcher.forward(req, resp);

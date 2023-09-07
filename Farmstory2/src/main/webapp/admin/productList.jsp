@@ -27,12 +27,12 @@
                     <th>재고</th>
                     <th>등록일</th>
                 </tr>
-                <c:forEach var="product" items="products">
+                <c:forEach var="product" items="${products}">
                 <tr>
                     <td><input type="checkbox" name="chk"/></td>
-                    <td><img src="/Farmstory2/thumb/${product.thumb1}" class="thumb" alt="샘플1"></td>
-                    <td>${product.pno}</td>
-                    <td>${product.name}</td>
+                    <td><img src="${ctxPath}/thumb/${product.thumb1}" class="thumb" alt="${product.pName}"></td>
+                    <td>${product.pNo}</td>
+                    <td>${product.pName}</td>
                     <td>
                     	<c:choose>
                     		<c:when test="${product.type eq 1}">과일</c:when>
@@ -40,7 +40,7 @@
                     		<c:when test="${product.type eq 3}">곡물</c:when>
                     	</c:choose>
 					</td>
-                    <td>  원</td>
+                    <td> ${product.getPriceWithComma()} 원</td>
                     <td>${product.stock}</td>
                     <td>${product.rdate}</td>
                 </tr>

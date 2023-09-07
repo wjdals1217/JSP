@@ -3,8 +3,11 @@ package kr.co.farmstory2.dto;
 import java.io.File;
 import java.util.UUID;
 
-public class ProductDTO {
+import kr.co.farmstory2.utils.Utils;
 
+public class ProductDTO {
+	private Utils utils = new Utils();
+	
 	private int pNo;
 	private int type;
 	private String pName;
@@ -53,6 +56,9 @@ public class ProductDTO {
 	public int getPrice() {
 		return price;
 	}
+	public String getPriceWithComma() {
+		return utils.comma(price);
+	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
@@ -61,6 +67,9 @@ public class ProductDTO {
 	}
 	public int getDelivery() {
 		return delivery;
+	}
+	public String getDeliveryWithComma() {
+		return utils.comma(delivery);
 	}
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;

@@ -45,6 +45,17 @@ public class RegisterController extends HttpServlet{
 		String addr2 = req.getParameter("addr2");
 		String regip = req.getRemoteAddr();
 		
+		logger.debug("uid : "+uid);
+		logger.debug("pass1 : "+pass1);
+		logger.debug("pass2 : "+pass2);
+		logger.debug("name : "+name);
+		logger.debug("email : "+email);
+		logger.debug("nick : "+nick);
+		logger.debug("hp : "+hp);
+		logger.debug("zip : "+zip);
+		logger.debug("addr1 : "+addr1);
+		logger.debug("addr2 : "+addr2);
+		
 		UserDTO dto = new UserDTO();
 		dto.setUid(uid);
 		dto.setPass(pass1);
@@ -57,6 +68,7 @@ public class RegisterController extends HttpServlet{
 		dto.setAddr2(addr2);
 		dto.setRegip(regip);
 		
+		logger.debug("register doPost dto : "+dto);
 		service.insertUser(dto);
 		
 		resp.sendRedirect("/Farmstory2/user/login.do?success=300");

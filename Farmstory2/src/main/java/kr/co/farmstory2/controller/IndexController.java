@@ -16,6 +16,11 @@ public class IndexController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String success = req.getParameter("success");
+		
+		req.setAttribute("success", success);
+		// 동한 개국공신 bbbbb
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);
 	}

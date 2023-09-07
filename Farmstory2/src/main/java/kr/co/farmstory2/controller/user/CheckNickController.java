@@ -34,7 +34,7 @@ public class CheckNickController extends HttpServlet{
 		// JSON 생성
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);
-		
+		logger.debug("result : "+result);
 		// JSON 출력
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());

@@ -49,7 +49,7 @@
 		                    <td>별명</td>
 		                    <td>
 		                        <p class="nickInfo">공백없는 한글, 영문, 숫자 입력</p>
-		                        <input type="text" name="nick" placeholder="별명 입력"/>
+		                        <input type="text" name="nick" required  placeholder="별명 입력"/>
 		                        <button type="button" id="btnCheckNick"><img src="${ctxPath}/user/images/chk_id.gif" alt="중복확인"/></button>
 		                        <span class="nickResult"></span>
 		                    </td>

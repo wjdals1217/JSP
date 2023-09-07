@@ -26,6 +26,9 @@ public class UserService {
 	public UserDTO selectUser(String uid, String pass) {
 		return dao.selectUser(uid, pass);
 	}
+	public UserDTO selectUser(String uid) {
+		return dao.selectUser(uid);
+	}
 	public int selectCountUid(String uid) {
 		return dao.selectCountUid(uid);
 	}

@@ -34,10 +34,10 @@
 		});// 아이디 중복체크 및 아이디 유효성 검사 끝
 		
 		// 닉네임 중복체크
-		$('input[name=nick]').focusout(function(){
+		$('input[name=nick]').keyup(function(){
 			// 입력 데이터 가져오기
-			const nic = $(this).val();
-			
+			const nick = $(this).val();
+			console.log(nick);
 			// 유효성 검사
 			if(!nick.match(reNick)){
 				$('.nickResult').css('color', 'red').text('유효한 닉네임이 아닙니다.');
@@ -48,10 +48,9 @@
 			const jsonData ={
 				"nick":nick	
 			};
-			
+			console.log(jsonData);
 			// 데이터 전송
-			$.get('/Farmstory2/user/checkNick.do', jsonData, function(){
-				
+			$.get('/Farmstory2/user/checkNick.do', jsonData, function(data){
 				if(data.result >=1){
 					$('.nickResult').css('color', 'red').text('이미 사용중인 별명입니다.');
 					isNickOk = false;
@@ -59,7 +58,7 @@
 					$('.nickResult').css('color', 'green').text('사용 가능한 별명입니다.');
 					isNickOk = true;
 				}
-			});
+			},"json");
 		});
 		// 닉네임 중복체크 및 닉네임 유효성 끝
 		
