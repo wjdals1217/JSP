@@ -108,6 +108,10 @@ public class SQL {
 	public static final String SELECT_FILE = "SELECT * FROM `File` WHERE `fno`=?";
 
 	public static final String UPDATE_DOWNLOAD = "UPDATE `File` SET `download`=`download`+1 WHERE `fno`=?";
+
+	public static final String UPDATE_FILE = "UPDATE `File` SET `oriName`=?, `newName`=?, `download`=0 WHERE `ano`=?";
+
+	public static final String DELETE_FILE = "DELETE FROM `File` WHERE `ano`=?";
 	
 	// Product
 		public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "

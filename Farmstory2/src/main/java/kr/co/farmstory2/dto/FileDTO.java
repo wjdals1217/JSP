@@ -20,6 +20,9 @@ public class FileDTO {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+	public void setAno(String ano) {
+		this.ano = Integer.parseInt(ano);
+	}
 	public String getOriName() {
 		return oriName;
 	}

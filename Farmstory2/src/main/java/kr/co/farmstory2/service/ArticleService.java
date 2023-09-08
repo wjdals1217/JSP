@@ -52,8 +52,8 @@ public class ArticleService {
 	public List<ArticleDTO> selectComments(String no) {
 		return dao.selectComments(no);
 	}
-	public int updateArticle(ArticleDTO dto) {
-		return dao.updateArticle(dto);
+	public void updateArticle(ArticleDTO dto) {
+		dao.updateArticle(dto);
 	}
 	public int updateComment(String no, String content) {
 		return dao.updateComment(no, content);

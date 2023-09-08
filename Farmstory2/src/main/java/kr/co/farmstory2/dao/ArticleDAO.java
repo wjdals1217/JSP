@@ -250,24 +250,26 @@ public class ArticleDAO extends DBHelper{
 			}
 			close();
 		} catch (Exception e) {
-			logger.error("selectComments() error: "+e.getMessage());;
+			logger.error("selectComments() error: "+e.getMessage());
 		}
 		
 		return comments;
 	}
-	public int updateArticle(ArticleDTO dto) {
-		int no = 0;
+	public void updateArticle(ArticleDTO dto) {
 		try {
+			logger.info("updateArticle()....1");
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setInt(3, dto.getFile());
 			psmt.setInt(4, dto.getNo());
+			psmt.executeUpdate();
+			close();
+			logger.info("updateArticle()....2");
 		} catch (Exception e) {
 			logger.error("updateArticle() error : "+ e.getMessage());
 		}
-		return no;
 	}
 	public void deleteArticle(String no) {}
 

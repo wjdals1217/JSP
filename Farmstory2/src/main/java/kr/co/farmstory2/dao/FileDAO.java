@@ -52,7 +52,19 @@ public class FileDAO extends DBHelper{
 	public List<FileDTO> selectFiles() {
 		return null;
 	}
-	public void updateFile(FileDTO dto) {}
+	public void updateFile(FileDTO dto) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_FILE);
+			psmt.setString(1, dto.getOriName());
+			psmt.setString(2, dto.getNewName());
+			psmt.setInt(3, dto.getAno());
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("updateFile() error : "+e.getMessage());
+		}
+	}
 
 	public void updateDownload(FileDTO dto) {
 		try {
@@ -66,6 +78,16 @@ public class FileDAO extends DBHelper{
 		}
 	}
 	
-	public void deleteFile(String no) {}
+	public void deleteFile(String no) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_FILE);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("deleteFile() error : "+e.getMessage());
+		}
+	}
 
 }
