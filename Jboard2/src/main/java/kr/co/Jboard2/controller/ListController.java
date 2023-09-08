@@ -37,6 +37,7 @@ public class ListController extends HttpServlet{
 		// 데이터 수신
 		String pg  = req.getParameter("pg");
 		String search  = req.getParameter("search");
+		String success  = req.getParameter("success");
 		logger.debug("pg : "+pg);
 		logger.debug("search : "+search);
 		
@@ -72,6 +73,7 @@ public class ListController extends HttpServlet{
 			req.setAttribute("pageGroupEnd", result[1]);
 			req.setAttribute("pageStartNum", pageStartNum+1);
 			req.setAttribute("search", search);
+			req.setAttribute("success", success);
 			
 			RequestDispatcher dispatcher= req.getRequestDispatcher("/list.jsp");
 			dispatcher.forward(req, resp);

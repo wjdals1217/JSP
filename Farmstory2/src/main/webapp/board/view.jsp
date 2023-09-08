@@ -244,7 +244,7 @@
 			    
 			    <div>
 			    	<c:if test="${sessUser.uid eq article.writer}">
-			    		<a href="${ctxPath}/board/delete.do" class="btnDelete">삭제</a>
+			    		<a href="${ctxPath}/board/delete.do?group=${group}&cate=${cate}&no=${article.no}" class="btnDelete">삭제</a>
 			        	<a href="${ctxPath}/board/modify.do?group=${group}&cate=${cate}&no=${article.no}" class="btnModify">수정</a>
 			    	</c:if>
 			        <a href="${ctxPath}/board/list.do?group=${group}&cate=${cate}" class="btnList">목록</a>

@@ -42,7 +42,7 @@ public class DBHelper {
 			psmt.close();
 		}
 		if(psmt1 != null) {
-			psmt.close();
+			psmt1.close();
 		}
 		if(conn != null) {
 			conn.close();

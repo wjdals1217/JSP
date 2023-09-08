@@ -48,5 +48,12 @@ public class FileDTO {
 		this.rdate = rdate;
 	}
 	
+	@Override
+	public String toString() {
+		return "FileDTO [fno=" + fno + ", ano=" + ano + ", oriName=" + oriName + ", newName=" + newName + ", download="
+				+ download + ", rdate=" + rdate + "]";
+	}
+	
+	
 
 }

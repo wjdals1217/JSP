@@ -53,6 +53,7 @@ public class LoginController extends HttpServlet{
 		
 		UserDTO user = service.selectUser(uid, pass);
 		req.setAttribute("user", user);
+		req.setAttribute("success", success);
 		
 		logger.info("login"+user);
 		

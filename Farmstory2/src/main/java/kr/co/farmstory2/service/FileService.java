@@ -23,5 +23,8 @@ public class FileService {
 	public void deleteFile(String no) {
 		dao.deleteFile(no);
 	}
+	public List<String> deleteFileInArticle(String no) {
+		return dao.deleteFileInArticle(no);
+	}
 
 }

@@ -84,6 +84,7 @@ public class ModifyController extends HttpServlet{
 
 					// fileDB 업데이트
 					fileService.updateFile(fileDTO);
+					
 					// 원래 파일 directory에서 삭제
 					File file = new File(path+"/"+prevFile);
 					if(file.exists()) {
