@@ -30,10 +30,12 @@ public class ListController extends HttpServlet{
 		String cate = req.getParameter("cate");		
 		String pg = req.getParameter("pg");		
 		String search = req.getParameter("search");
+		String success = req.getParameter("success");
 		logger.debug("group : "+group);
 		logger.debug("cate : "+cate);
 		logger.debug("pg : "+pg);
 		logger.debug("search : "+search);
+		logger.debug("success : "+success);
 		
 		int currentPage = service.getCurrentPage(pg);
 		
@@ -58,6 +60,7 @@ public class ListController extends HttpServlet{
 		req.setAttribute("pageGroupEnd", result[1]);
 		req.setAttribute("pageStartNum", pageStartNum+1);
 		req.setAttribute("search", search);
+		req.setAttribute("success", success);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/list.jsp");
 		dispatcher.forward(req, resp);

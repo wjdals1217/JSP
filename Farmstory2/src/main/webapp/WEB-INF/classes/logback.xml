@@ -2,9 +2,9 @@
 <configuration>
 	<property name="NAME" value="Farmstory2"/>
 	<!--  개발용 -->
-	<!-- <property name="DIR" value="/logs"/> -->
+	<property name="DIR" value="/logs"/>
 	<!--  배포용 -->
-	<property name="DIR" value="/home/tomcat/logs"/>
+	<!-- <property name="DIR" value="/home/tomcat/logs"/> -->
 		
 	<!-- 콘솔 어펜더 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -49,10 +49,10 @@
 	</appender>
   	
   
-	<root level="info">
-    	<!-- <appender-ref ref="STDOUT" /> --> 
+	<root level="debug">
+    	<appender-ref ref="STDOUT" /> 
     	<!-- <appender-ref ref="FILE" /> -->
-    	<appender-ref ref="ROLLING_SIZE" />
+    	<!-- <appender-ref ref="ROLLING_SIZE" /> -->
    	</root>
 
 </configuration>

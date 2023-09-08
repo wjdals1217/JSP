@@ -115,7 +115,7 @@ public class SQL {
 
 	public static final String DELETE_FILE = "DELETE FROM `File` WHERE `ano`=?";
 	
-	public final static String SELECT_FILE_SNAMES = "SELECT `sfile` FROM `File` WHERE `ano`=?";
+	public final static String SELECT_FILE_SNAMES = "SELECT `newName` FROM `File` WHERE `ano`=?";
 	
 	// Product
 		public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "
