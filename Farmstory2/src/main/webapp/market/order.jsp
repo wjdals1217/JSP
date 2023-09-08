@@ -1,6 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="${ctxPath}/js/zipcode.js"></script>
+<script>
+	$(function(){
+		$('#btnBuy').click(function(){
+			$('#orderForm').submit();
+			console.log("submit");
+		});
+		
+	});
+</script>
         <div id="sub">
             <div><img src="../images/sub_top_tit2.png" alt="MARKET"></div>
             <section class="market">
@@ -54,7 +64,7 @@
                     </div>
                     <h3>주문정보 입력</h3>
                     <div class="shipping">
-                    <form action="/Farmstory2/market/insertOrder.do" method="post">
+                    <form id="orderForm" action="/Farmstory2/market/insertOrder.do" method="post">
                     	<input type="hidden" name="orderProduct" value="${pNo}"/>
                     	<input type="hidden" name="orderCount" value="${count}"/>
                     	<input type="hidden" name="orderDelivery" value="${delivery}"/>

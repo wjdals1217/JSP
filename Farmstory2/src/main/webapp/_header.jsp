@@ -28,6 +28,8 @@
         		alert('로그아웃 되셨습니다. 안녕히 가세요.');
         	}else if(success == 300){
         		alert('회원가입이 완료되었습니다. 환영합니다.');
+        	}else if(success == 500) {
+        		alert('주문이 완료되었습니다.');
         	}
     	  
     </script>

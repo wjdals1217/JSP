@@ -29,6 +29,7 @@ public class ListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String type = req.getParameter("type");
 		String pg = req.getParameter("pg");
+		String success = req.getParameter("success");
 		// 로그는 꼭 출력해서 확인하는 습관을 가지세요.
 		logger.debug("type : " + type);
 		logger.debug("pg : " + pg);
@@ -70,6 +71,7 @@ public class ListController extends HttpServlet{
 				req.setAttribute("pageGroupEnd", result[1]);
 				req.setAttribute("pageStartNum", pageStartNum+1);
 				req.setAttribute("products", products);
+				req.setAttribute("success", success);
 				
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/market/list.jsp");
 		dispatcher.forward(req, resp);
