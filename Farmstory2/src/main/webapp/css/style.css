@@ -512,6 +512,12 @@ main > .info > div > .account {
 #sub > .market > .view > .basic > table em {            
     color: #777;
 }
+#sub > .market > .view > .basic > table input {
+	text-align: right;
+	letter-spacing: 2px;
+}
+
+
 #sub > .market > .view > .basic > table .total {
     font-weight: bold;
     color: #c20a0a;        

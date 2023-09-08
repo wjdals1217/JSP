@@ -23,13 +23,16 @@
     		if(success == 100){
         		alert('로그인에 실패 했습니다. 아이디, 비번을 다시 확인하시기 바랍니다.');
         	}else if(success == 101){
-        		alert('로그인을 먼저 하셔야 합니다.');    		
+        		alert('로그인을 먼저 하셔야 합니다.');
+        		
         	}else if(success == 111) {
         		alert('로그아웃 되셨습니다. 안녕히 가세요.');
         	}else if(success == 300){
         		alert('회원가입이 완료되었습니다. 환영합니다.');
         	}else if(success == 500) {
         		alert('주문이 완료되었습니다.');
+        	}else if(success == 800){
+        		alert('로그인을 먼저 하셔야 합니다.');
         	}
     	  
     </script>

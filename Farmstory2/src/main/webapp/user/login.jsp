@@ -8,6 +8,7 @@
 <div id="user">
             <section class="login">
                 <form action="${ctxPath}/user/login.do" method="post">
+                <input type="hidden" name="success" value="${success}">
                     <table border="0">
                         <tr>
                             <td><img src="${ctxPath}/user/images/login_ico_id.png" alt="아이디"/></td>

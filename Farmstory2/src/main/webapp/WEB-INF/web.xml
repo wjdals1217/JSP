@@ -50,8 +50,14 @@
   	<filter-name>CheckLoginFilter</filter-name>
   	<url-pattern>/board/delete.do</url-pattern>
   </filter-mapping>
+  
+ 
+ <filter>
+  	<filter-name>CheckLoginMarketFilter</filter-name>
+  	<filter-class>kr.co.farmstory2.filter.CheckLoginMarketFilter</filter-class>
+  </filter>
   <filter-mapping>
-  	<filter-name>CheckLoginFilter</filter-name>
+  	<filter-name>CheckLoginMarketFilter</filter-name>
   	<url-pattern>/market/order.do</url-pattern>
   </filter-mapping>
  

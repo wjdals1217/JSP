@@ -25,7 +25,7 @@ import kr.co.farmstory2.dto.UserDTO;
  *  - web.xml 필터 등록 및 해당 필터가 작동할 주소매핑 작업  
  */
 
-public class CheckLoginFilter implements Filter {
+public class CheckLoginMarketFilter implements Filter {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -45,7 +45,7 @@ public class CheckLoginFilter implements Filter {
 		}else {
 			// 다음 필터 호출, 필터 없으면 최종 자원 요청
 			logger.debug("here2...");
-			((HttpServletResponse)response).sendRedirect("/Farmstory2/user/login.do?success=101");
+			((HttpServletResponse)response).sendRedirect("/Farmstory2/user/login.do?success=800");
 			
 			
 		}

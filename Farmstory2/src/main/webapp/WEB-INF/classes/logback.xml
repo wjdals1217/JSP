@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property name="NAME" value="Jboard2"/>
+	<property name="NAME" value="Farmstory2"/>
 	<!--  개발용 -->
-	<property name="DIR" value="/logs"/>
+	<!-- <property name="DIR" value="/logs"/> -->
 	<!--  배포용 -->
-	<!-- <property name="DIR" value="/home/tomcat/logs"/> -->
-	
+	<property name="DIR" value="/home/tomcat/logs"/>
+		
 	<!-- 콘솔 어펜더 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
   		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -35,11 +35,11 @@
 
 	<!-- 롤링 어펜더(크기별) -->	 
 	<appender name="ROLLING_SIZE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_DIR}/${NAME}.log</file>
+		<file>${DIR}/${NAME}.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_DIR}/${NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${DIR}/${NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>1MB</maxFileSize>
+				<maxFileSize>10MB</maxFileSize>
 				<maxHistory>7</maxHistory>
 			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
@@ -49,10 +49,10 @@
 	</appender>
   	
   
-	<root level="debug">
-    	<appender-ref ref="STDOUT" /> 
-    	<!-- <appender-ref ref="FILE" />
-    	<appender-ref ref="ROLLING_DAILY" />
- -->  	</root>
+	<root level="info">
+    	<!-- <appender-ref ref="STDOUT" /> --> 
+    	<!-- <appender-ref ref="FILE" /> -->
+    	<appender-ref ref="ROLLING_SIZE" />
+   	</root>
 
 </configuration>

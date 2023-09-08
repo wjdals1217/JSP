@@ -1,6 +1,7 @@
 package kr.co.farmstory2.controller.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,6 +41,12 @@ public class LoginController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uid = req.getParameter("uid");
 		String pass = req.getParameter("pass");
+		String success = req.getParameter("success");
+		int suc = 0;
+		logger.debug("success800 : " + success);
+		if(success != "") {
+			suc = Integer.parseInt(success);
+		}
 		
 		logger.debug("uid : "+uid);
 		logger.debug("pass : "+pass);
@@ -47,9 +54,21 @@ public class LoginController extends HttpServlet{
 		UserDTO user = service.selectUser(uid, pass);
 		req.setAttribute("user", user);
 		
+		logger.info("login"+user);
+		
 		if(user != null){
 			HttpSession session = req.getSession();
 			session.setAttribute("sessUser", user);
+			
+			logger.debug("success800 : " + suc);
+			
+			if(suc == 800) {
+				PrintWriter pw = resp.getWriter();
+				pw.print("<script>");
+				pw.print("history.go(-2);");
+				pw.print("</script>");
+				pw.close();
+			}
 			
 			resp.sendRedirect("/Farmstory2");			
 		}else{
