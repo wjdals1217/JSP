@@ -116,6 +116,8 @@
 		////////////////////////////////////////////////////////////////////////
 		// 댓글수정(동적 이벤트 바인딩 처리 -> 동적 생성되는 새로운 댓글목록 삭제링크가 동작함)
 		////////////////////////////////////////////////////////////////////////
+		let isModifying = false;
+		
 		document.addEventListener('click', async function(e){
 			
 			const article  = e.target.parentNode.closest('article');
@@ -127,12 +129,15 @@
 			// 수정&수정완료
 			if(e.target && e.target.classList.value == 'modify'){
 				e.preventDefault();
+				// 다른 수정 중인 상태(수정모드)의 댓글 Article 문서객체 생성
+				const modifying  = document.getElementsByClassName('modifying')[0];
 				
 				const txt = e.target.innerText;
 				
 				if(txt == '수정'){
-					// 수정모드				
-					const value = textarea.value;
+					// 수정하려는 해당 댓글의 부모 Article 태그에 클래스값 modifying  설정
+					article.classList.add('modifying');
+					
 					textarea.style.border = '1px solid #e4eaec';
 					textarea.style.background = '#fff';
 					textarea.readOnly = false;
@@ -141,6 +146,25 @@
 					remove.style.display = 'none';
 					cancel.style.display = 'inline';
 					modify.innerText = '수정완료';
+					
+					// 수정 중인 댓글이 존재할 경우 해당 댓글 수정모드 해제
+					if(modifying != null){						 
+						const modifyingTextarea = modifying.getElementsByTagName('textarea')[0];
+						const modifyingRemove = modifying.getElementsByClassName('remove')[0];
+						const modifyingCancel = modifying.getElementsByClassName('cancel')[0];
+						const modifyingModify = modifying.getElementsByClassName('modify')[0];
+						
+						modifyingTextarea.style.border = 'none';
+						modifyingTextarea.style.background = 'none';
+						modifyingTextarea.readOnly = true;
+						
+						modifyingRemove.style.display = 'inline';
+						modifyingCancel.style.display = 'none';
+						modifyingModify.innerText = '수정';
+						
+						modifying.classList.remove('modifying');
+					}
+					
 					
 				}else if(txt == '수정완료'){
 					

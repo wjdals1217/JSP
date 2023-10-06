@@ -3,11 +3,13 @@ package kr.co.farmstory2.controller.admin;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +24,15 @@ import kr.co.farmstory2.service.ProductService;
 public class ProductRegisterController extends HttpServlet{
 
 	private static final long serialVersionUID = 3235145967505027675L;
+	private String ctxPath;
 	private ArticleService aService = new ArticleService();
 	private ProductService pService = ProductService.INSTANCE;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		ctxPath = config.getServletContext().getContextPath();
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -80,6 +88,6 @@ public class ProductRegisterController extends HttpServlet{
 		pService.insertProduct(dto);
 		
 		// 리다이렉트
-		resp.sendRedirect("/Farmstory2/admin/productRegister.do?success=200");
+		resp.sendRedirect(ctxPath+"/admin/productRegister.do?success=200");
 	}
 }

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,15 @@ public class LoginController extends HttpServlet{
 	private static final long serialVersionUID = -6259363977100195051L;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserService service = UserService.getInstance();
+	
+	// 컨텍스트 경로(/Farmstory2) 전역변수(모든 컨트롤러에 선언)
+		private String ctxPath;
+		
+		@Override
+		public void init(ServletConfig config) throws ServletException {
+			// 컨텍스트 경로(/Farmstory2)구하기  (최초 1번, 모든 컨트롤러에 정의)
+			ctxPath = config.getServletContext().getContextPath();
+		}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,9 +81,11 @@ public class LoginController extends HttpServlet{
 				pw.close();
 			}
 			
-			resp.sendRedirect("/Farmstory2");			
+			// 컨텍스트 경로 전역변수를 이용한 리다이렉트
+			resp.sendRedirect(ctxPath);
 		}else{
-			resp.sendRedirect("/Farmstory2/user/login.do?success=100");
+			
+			resp.sendRedirect(ctxPath+"/user/login.do?success=100");
 		}
 	}
 }
